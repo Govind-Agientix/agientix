@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
+import agientixLogo from "@/assets/agientix-logo.png";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -121,9 +122,7 @@ export function Header() {
       <div className="container-wide flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg gradient-bg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">A</span>
-          </div>
+          <img src={agientixLogo} alt="Agientix" className="h-8 w-8 object-contain" />
           <span className="font-display font-bold text-xl">Agientix</span>
         </Link>
 
