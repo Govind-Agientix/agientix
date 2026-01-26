@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Youtube } from "lucide-react";
+import agientixLogo from "@/assets/agientix-logo.png";
 
 const footerLinks = {
   product: {
@@ -59,9 +60,7 @@ export function Footer() {
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg gradient-bg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
+              <img src={agientixLogo} alt="Agientix" className="h-8 w-8 object-contain" />
               <span className="font-display font-bold text-xl">Agientix</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
