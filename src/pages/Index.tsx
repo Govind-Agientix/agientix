@@ -6,7 +6,10 @@ import { TimelineSection } from "@/components/home/TimelineSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { MetricsSection } from "@/components/home/MetricsSection";
 import { TrustSection } from "@/components/home/TrustSection";
+import { IntegrationsSection } from "@/components/home/IntegrationsSection";
+import { MarketplacePreview } from "@/components/home/MarketplacePreview";
 import { SixReasonsSection } from "@/components/home/SixReasonsSection";
+import { ResourcesTeaser } from "@/components/home/ResourcesTeaser";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 
 const Index = () => {
@@ -20,7 +23,10 @@ const Index = () => {
         <TestimonialsSection />
         <MetricsSection />
         <TrustSection />
+        <IntegrationsSection />
+        <MarketplacePreview />
         <SixReasonsSection />
+        <ResourcesTeaser />
         <FinalCTASection />
       </main>
       <Footer />
