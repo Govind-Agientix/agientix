@@ -122,7 +122,7 @@ export function Header() {
       <div className="container-wide flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={agientixLogo} alt="Agientix" className="h-8 w-8 object-contain" />
+          <img src={agientixLogo} alt="Agientix" className="h-12 w-12 object-contain" />
           <span className="font-display font-bold text-xl">Agientix</span>
         </Link>
 

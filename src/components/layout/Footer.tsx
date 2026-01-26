@@ -60,7 +60,7 @@ export function Footer() {
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src={agientixLogo} alt="Agientix" className="h-8 w-8 object-contain" />
+              <img src={agientixLogo} alt="Agientix" className="h-12 w-12 object-contain" />
               <span className="font-display font-bold text-xl">Agientix</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
