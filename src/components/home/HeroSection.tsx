@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { WorkflowStudioDemo } from "@/components/workflow/WorkflowStudioDemo";
 
 export function HeroSection() {
   return (
@@ -54,16 +55,7 @@ export function HeroSection() {
           {/* Hero Visual */}
           <div className="mt-16 relative animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border bg-card">
-              <div className="aspect-video bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-2xl gradient-bg flex items-center justify-center animate-float">
-                    <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <p className="text-muted-foreground">AI-powered workflow automation interface</p>
-                </div>
-              </div>
+              <WorkflowStudioDemo />
             </div>
             {/* Decorative Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
