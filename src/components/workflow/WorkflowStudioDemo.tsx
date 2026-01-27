@@ -25,12 +25,13 @@ import {
   CheckCircle2,
   Clock,
   AlertTriangle,
-  Users,
   FileText,
   Shield,
   UserCheck,
   Database,
   type LucideIcon,
+  PanelLeftClose,
+  PanelRightClose,
 } from "lucide-react";
 import { WorkflowNode, type WorkflowNodeType, type NodeStatus } from "./WorkflowNode";
 
@@ -216,6 +217,8 @@ export function WorkflowStudioDemo() {
   const [currentTemplate, setCurrentTemplate] = useState<WorkflowTemplate>(supportTriageTemplate);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [runLogs, setRunLogs] = useState<Array<{ time: string; message: string; status: "success" | "pending" }>>([]);
+  const [showLeftPanel, setShowLeftPanel] = useState(true);
+  const [showRightPanel, setShowRightPanel] = useState(true);
 
   const loadTemplate = useCallback((template: WorkflowTemplate) => {
     setCurrentTemplate(template);
@@ -243,45 +246,45 @@ export function WorkflowStudioDemo() {
   }, [loadTemplate]);
 
   return (
-    <div className="h-[560px] w-full bg-background rounded-xl overflow-hidden border border-border shadow-xl flex flex-col">
+    <div className="w-full bg-background rounded-xl overflow-hidden border border-border shadow-2xl flex flex-col h-[480px] sm:h-[520px] md:h-[560px]">
       {/* Top Bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-border bg-muted/30 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-1 text-sm">
-            <span className="text-muted-foreground">Workflow Studio</span>
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            <span className="font-medium text-foreground">{currentTemplate.name}</span>
+          <div className="flex items-center gap-1 text-xs sm:text-sm min-w-0">
+            <span className="text-muted-foreground hidden sm:inline">Workflow Studio</span>
+            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground hidden sm:block" />
+            <span className="font-medium text-foreground truncate">{currentTemplate.name}</span>
           </div>
           {/* Status chip */}
-          <Badge variant="secondary" className="text-xs font-normal">
+          <Badge variant="secondary" className="text-[10px] sm:text-xs font-normal shrink-0">
             Draft
           </Badge>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="h-8 text-xs" onClick={handleReset}>
-            <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
-            Reset
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+          <Button variant="ghost" size="sm" className="h-7 sm:h-8 text-[10px] sm:text-xs px-2 sm:px-3" onClick={handleReset}>
+            <RotateCcw className="h-3 w-3 sm:h-3.5 sm:w-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">Reset</span>
           </Button>
-          <Button variant="outline" size="sm" className="h-8 text-xs">
-            <Play className="h-3.5 w-3.5 mr-1.5" />
-            Test run
+          <Button variant="outline" size="sm" className="h-7 sm:h-8 text-[10px] sm:text-xs px-2 sm:px-3">
+            <Play className="h-3 w-3 sm:h-3.5 sm:w-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">Test run</span>
           </Button>
-          <Button size="sm" className="h-8 text-xs gradient-bg text-primary-foreground">
-            <Upload className="h-3.5 w-3.5 mr-1.5" />
-            Publish
+          <Button size="sm" className="h-7 sm:h-8 text-[10px] sm:text-xs px-2 sm:px-3 gradient-bg text-primary-foreground">
+            <Upload className="h-3 w-3 sm:h-3.5 sm:w-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">Publish</span>
           </Button>
         </div>
       </div>
 
       {/* Prompt Bar */}
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border bg-muted/20">
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2 border-b border-border bg-muted/20 shrink-0">
         <div className="flex-1 relative">
           <Input
             value={promptValue}
             onChange={(e) => setPromptValue(e.target.value)}
-            placeholder="Describe your workflow… e.g., 'Route urgent tickets to senior agents'"
-            className="h-9 pr-24 text-sm bg-background border-border"
+            placeholder="Describe your workflow…"
+            className="h-8 sm:h-9 text-xs sm:text-sm bg-background border-border"
             onKeyDown={(e) => {
               if (e.key === "Enter") handleGenerate();
             }}
@@ -289,26 +292,26 @@ export function WorkflowStudioDemo() {
         </div>
         <Button 
           size="sm" 
-          className="h-9 px-4 gradient-bg text-primary-foreground"
+          className="h-8 sm:h-9 px-3 sm:px-4 gradient-bg text-primary-foreground shrink-0"
           onClick={handleGenerate}
         >
-          <Sparkles className="h-4 w-4 mr-1.5" />
-          Generate
+          <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 sm:mr-1.5" />
+          <span className="hidden sm:inline">Generate</span>
         </Button>
       </div>
 
-      {/* Main 3-Column Layout */}
-      <div className="flex-1 flex min-h-0">
-        {/* Left Panel */}
-        <div className="w-48 border-r border-border bg-muted/10 flex flex-col">
+      {/* Main Layout - Responsive */}
+      <div className="flex-1 flex flex-col md:flex-row min-h-0 overflow-hidden">
+        {/* Left Panel - Hidden on mobile by default, toggleable */}
+        <div className={`${showLeftPanel ? 'flex' : 'hidden'} md:flex w-full md:w-44 lg:w-48 border-b md:border-b-0 md:border-r border-border bg-muted/10 flex-col shrink-0 max-h-32 md:max-h-none`}>
           <ScrollArea className="flex-1">
-            <div className="p-3">
+            <div className="p-2 sm:p-3">
               {/* Templates */}
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              <div className="mb-3 md:mb-4">
+                <h4 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2">
                   Templates
                 </h4>
-                <div className="space-y-1">
+                <div className="flex md:flex-col gap-1">
                   {allTemplates.map((template) => {
                     const Icon = template.icon;
                     const isActive = currentTemplate.id === template.id;
@@ -316,13 +319,13 @@ export function WorkflowStudioDemo() {
                       <button
                         key={template.id}
                         onClick={() => handleTemplateClick(template)}
-                        className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm transition-colors text-left ${
+                        className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm transition-colors text-left ${
                           isActive 
                             ? "bg-primary/10 text-primary font-medium" 
                             : "text-foreground hover:bg-muted/50"
                         }`}
                       >
-                        <Icon className="h-4 w-4" />
+                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
                         <span className="truncate">{template.name}</span>
                       </button>
                     );
@@ -330,9 +333,9 @@ export function WorkflowStudioDemo() {
                 </div>
               </div>
 
-              {/* Connectors */}
-              <div>
-                <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              {/* Connectors - Hidden on mobile */}
+              <div className="hidden md:block">
+                <h4 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2">
                   Connectors
                 </h4>
                 <div className="space-y-1">
@@ -343,10 +346,10 @@ export function WorkflowStudioDemo() {
                         key={connector.name}
                         className="w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm text-foreground hover:bg-muted/50 transition-colors text-left"
                       >
-                        <Icon className="h-4 w-4 text-accent" />
-                        <span className="flex-1">{connector.name}</span>
+                        <Icon className="h-4 w-4 text-accent shrink-0" />
+                        <span className="flex-1 truncate">{connector.name}</span>
                         {connector.connected && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-green-500 shrink-0" />
                         )}
                       </button>
                     );
@@ -358,7 +361,7 @@ export function WorkflowStudioDemo() {
         </div>
 
         {/* Center - React Flow Canvas */}
-        <div className="flex-1 relative bg-muted/5">
+        <div className="flex-1 relative bg-muted/5 min-h-[280px] sm:min-h-[320px] md:min-h-0 h-full w-full">
           <ReactFlow
             nodes={currentTemplate.nodes}
             edges={currentTemplate.edges}
@@ -372,70 +375,90 @@ export function WorkflowStudioDemo() {
             <Background gap={16} size={1} color="hsl(var(--border))" />
             <Controls className="!bg-background !border-border !shadow-md" />
             <MiniMap 
-              className="!bg-background !border-border"
+              className="!bg-background !border-border hidden sm:block"
               nodeColor="hsl(var(--primary))"
               maskColor="hsl(var(--muted) / 0.5)"
             />
           </ReactFlow>
+          
+          {/* Mobile panel toggles */}
+          <div className="absolute bottom-2 left-2 flex gap-1 md:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0 bg-background/90"
+              onClick={() => setShowLeftPanel(!showLeftPanel)}
+            >
+              <PanelLeftClose className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0 bg-background/90"
+              onClick={() => setShowRightPanel(!showRightPanel)}
+            >
+              <PanelRightClose className="h-3.5 w-3.5" />
+            </Button>
+          </div>
         </div>
 
-        {/* Right Panel */}
-        <div className="w-56 border-l border-border bg-muted/10 flex flex-col">
+        {/* Right Panel - Hidden on mobile by default */}
+        <div className={`${showRightPanel ? 'flex' : 'hidden'} md:flex w-full md:w-48 lg:w-56 border-t md:border-t-0 md:border-l border-border bg-muted/10 flex-col shrink-0 max-h-36 md:max-h-none`}>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col h-full">
-            <TabsList className="w-full rounded-none border-b border-border bg-transparent h-10 p-0">
+            <TabsList className="w-full rounded-none border-b border-border bg-transparent h-9 sm:h-10 p-0 shrink-0">
               <TabsTrigger
                 value="inspector"
-                className="flex-1 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none text-xs"
+                className="flex-1 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none text-[10px] sm:text-xs"
               >
                 Inspector
               </TabsTrigger>
               <TabsTrigger
                 value="copilot"
-                className="flex-1 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none text-xs"
+                className="flex-1 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none text-[10px] sm:text-xs"
               >
                 AI Copilot
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="inspector" className="flex-1 m-0 p-3">
-              <div className="space-y-3">
+            <TabsContent value="inspector" className="flex-1 m-0 p-2 sm:p-3 overflow-auto">
+              <div className="space-y-2 sm:space-y-3">
                 {selectedNodeId ? (
                   (() => {
                     const selectedNode = currentTemplate.nodes.find(n => n.id === selectedNodeId);
                     if (!selectedNode) return null;
                     const Icon = selectedNode.data.icon;
                     return (
-                      <div className="p-3 rounded-lg bg-muted/30 border border-border">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Icon className="h-4 w-4 text-primary" />
-                          <span className="text-sm font-medium">{selectedNode.data.title}</span>
+                      <div className="p-2 sm:p-3 rounded-lg bg-muted/30 border border-border">
+                        <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary shrink-0" />
+                          <span className="text-xs sm:text-sm font-medium truncate">{selectedNode.data.title}</span>
                         </div>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground">
                           {selectedNode.data.subtitle}
                         </p>
                         <div className="mt-2 pt-2 border-t border-border">
-                          <span className="text-[10px] uppercase text-muted-foreground">Status</span>
-                          <p className="text-xs capitalize">{selectedNode.data.status}</p>
+                          <span className="text-[9px] sm:text-[10px] uppercase text-muted-foreground">Status</span>
+                          <p className="text-[10px] sm:text-xs capitalize">{selectedNode.data.status}</p>
                         </div>
                       </div>
                     );
                   })()
                 ) : (
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-[10px] sm:text-xs text-muted-foreground">
                     Click a node to view its properties
                   </div>
                 )}
               </div>
             </TabsContent>
-            <TabsContent value="copilot" className="flex-1 m-0 p-3">
+            <TabsContent value="copilot" className="flex-1 m-0 p-2 sm:p-3 overflow-auto">
               <div className="space-y-2">
                 <div className="flex items-start gap-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
-                  <Sparkles className="h-4 w-4 text-primary mt-0.5" />
-                  <p className="text-xs text-foreground">
+                  <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary mt-0.5 shrink-0" />
+                  <p className="text-[10px] sm:text-xs text-foreground">
                     Try: "Add a Slack notification when priority is high"
                   </p>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Ask me to modify or extend your workflow
+                <p className="text-[10px] sm:text-xs text-muted-foreground">
+                  Ask me to modify your workflow
                 </p>
               </div>
             </TabsContent>
@@ -444,31 +467,31 @@ export function WorkflowStudioDemo() {
       </div>
 
       {/* Bottom Run Log */}
-      <div className="h-24 border-t border-border bg-muted/20">
-        <div className="flex items-center justify-between px-4 py-2 border-b border-border">
-          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="h-16 sm:h-20 md:h-24 border-t border-border bg-muted/20 shrink-0">
+        <div className="flex items-center justify-between px-3 sm:px-4 py-1.5 sm:py-2 border-b border-border">
+          <h4 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             Run Log
           </h4>
-          <Badge variant="outline" className="text-xs font-normal">
-            {runLogs.length === 0 ? "No runs yet" : `${runLogs.length} entries`}
+          <Badge variant="outline" className="text-[10px] sm:text-xs font-normal">
+            {runLogs.length === 0 ? "No runs" : `${runLogs.length} entries`}
           </Badge>
         </div>
-        <ScrollArea className="h-[calc(100%-32px)]">
-          <div className="px-4 py-2 space-y-1.5">
+        <ScrollArea className="h-[calc(100%-28px)] sm:h-[calc(100%-32px)]">
+          <div className="px-3 sm:px-4 py-1.5 sm:py-2 space-y-1 sm:space-y-1.5">
             {runLogs.length === 0 ? (
-              <p className="text-xs text-muted-foreground italic">
+              <p className="text-[10px] sm:text-xs text-muted-foreground italic">
                 Run a test to see execution logs here…
               </p>
             ) : (
               runLogs.map((log, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs">
+                <div key={i} className="flex items-center gap-2 text-[10px] sm:text-xs">
                   {log.status === "success" ? (
-                    <CheckCircle2 className="h-3.5 w-3.5 text-green-500" />
+                    <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-green-500 shrink-0" />
                   ) : (
-                    <Clock className="h-3.5 w-3.5 text-amber-500" />
+                    <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-amber-500 shrink-0" />
                   )}
-                  <span className="text-muted-foreground">{log.time}</span>
-                  <span className="text-foreground">{log.message}</span>
+                  <span className="text-muted-foreground shrink-0">{log.time}</span>
+                  <span className="text-foreground truncate">{log.message}</span>
                 </div>
               ))
             )}
