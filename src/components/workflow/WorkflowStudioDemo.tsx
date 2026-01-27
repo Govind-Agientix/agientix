@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   ReactFlow,
   Background,
   Controls,
   MiniMap,
-  type Node,
   type Edge,
 } from "@xyflow/react";
 import { Button } from "@/components/ui/button";
@@ -21,37 +20,63 @@ import {
   Mail,
   Ticket,
   MessageSquare,
-  FileText,
   Zap,
   Bot,
   CheckCircle2,
   Clock,
+  AlertTriangle,
+  Users,
 } from "lucide-react";
+import { WorkflowNode, type WorkflowNodeType } from "./WorkflowNode";
 
-const initialNodes: Node[] = [
+const nodeTypes = {
+  workflow: WorkflowNode,
+};
+
+const initialNodes: WorkflowNodeType[] = [
   {
     id: "1",
-    type: "input",
-    position: { x: 50, y: 120 },
-    data: { label: "Email Received" },
+    type: "workflow",
+    position: { x: 50, y: 100 },
+    data: {
+      title: "Email Received",
+      subtitle: "Trigger on new email",
+      icon: Mail,
+      status: "success",
+    },
   },
   {
     id: "2",
-    type: "default",
-    position: { x: 250, y: 60 },
-    data: { label: "AI Classifier" },
+    type: "workflow",
+    position: { x: 300, y: 40 },
+    data: {
+      title: "AI Classifier",
+      subtitle: "Categorize intent",
+      icon: Bot,
+      status: "success",
+    },
   },
   {
     id: "3",
-    type: "default",
-    position: { x: 250, y: 180 },
-    data: { label: "Priority Check" },
+    type: "workflow",
+    position: { x: 300, y: 160 },
+    data: {
+      title: "Priority Check",
+      subtitle: "Evaluate urgency",
+      icon: AlertTriangle,
+      status: "idle",
+    },
   },
   {
     id: "4",
-    type: "output",
-    position: { x: 450, y: 120 },
-    data: { label: "Route to Agent" },
+    type: "workflow",
+    position: { x: 550, y: 100 },
+    data: {
+      title: "Route to Agent",
+      subtitle: "Assign to team",
+      icon: Users,
+      status: "idle",
+    },
   },
 ];
 
@@ -175,6 +200,7 @@ export function WorkflowStudioDemo() {
           <ReactFlow
             nodes={initialNodes}
             edges={initialEdges}
+            nodeTypes={nodeTypes}
             fitView
             proOptions={{ hideAttribution: true }}
             className="bg-transparent"
