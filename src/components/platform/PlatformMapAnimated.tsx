@@ -637,37 +637,93 @@ export function PlatformMapAnimated() {
             </div>
 
             {/* F) Right-side Modules Column */}
-            <div className="w-44 shrink-0 flex flex-col gap-4">
+            <div className="w-52 shrink-0 flex flex-col gap-4">
               {/* For operators - no code */}
-              <div className="rounded-xl bg-foreground text-background p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-3">
+              <div className="rounded-xl bg-foreground text-background p-3">
+                <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70 mb-3">
                   For operators — no code
                 </p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-background/10">
-                    <Settings className="w-4 h-4" />
-                    <span className="text-sm font-medium">Assistant Builder</span>
+                  {/* Assistant Builder */}
+                  <div className="p-2 rounded-lg bg-background/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Settings className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">Assistant Builder</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Content scoping</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Plugin scoping</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">User allow list</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Assistant prompt</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <div className="flex-1 h-px bg-background/30" />
+                      <span className="text-[8px] opacity-70">Review + publish</span>
+                      <div className="flex-1 h-px bg-background/30" />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-background/10">
-                    <Store className="w-4 h-4" />
-                    <span className="text-sm font-medium">Assistant Store</span>
+                  
+                  {/* Assistant Store */}
+                  <div className="p-2 rounded-lg bg-background/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Store className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">Assistant Store</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Prospecting coach</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Security analyst</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Recruiting assistant</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">RFP writer</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded border border-dashed border-background/40">etc.</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <div className="flex-1 h-px bg-background/30" />
+                      <span className="text-[8px] opacity-70">Review + publish</span>
+                      <div className="flex-1 h-px bg-background/30" />
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* For developers - pro code */}
-              <div className="rounded-xl bg-foreground text-background p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-3">
+              <div className="rounded-xl bg-foreground text-background p-3">
+                <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70 mb-3">
                   For developers — pro code
                 </p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-background/10">
-                    <Blocks className="w-4 h-4" />
-                    <span className="text-sm font-medium">Agent Studio</span>
+                  {/* Agent Studio */}
+                  <div className="p-2 rounded-lg bg-background/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Blocks className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">Agent Studio</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20 text-center">Plugin Workspace</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20 text-center">MCP Workspace</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20 text-center">Agent Architect</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-background/10">
-                    <Package className="w-4 h-4" />
-                    <span className="text-sm font-medium">AI Agent Marketplace</span>
+                  
+                  {/* AI Agent Marketplace */}
+                  <div className="p-2 rounded-lg bg-background/10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Package className="w-3.5 h-3.5" />
+                      <span className="text-xs font-semibold">AI Agent Marketplace</span>
+                    </div>
+                    <span className="inline-block px-1.5 py-0.5 text-[7px] font-semibold uppercase rounded bg-amber-500 text-amber-950 mb-2">
+                      Instant access
+                    </span>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Business initiatives</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Collections</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">MCP plugins</span>
+                      <span className="px-1.5 py-0.5 text-[8px] rounded bg-background/20">Sharing</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-[8px] opacity-70">
+                      <span>One-click install</span>
+                      <span>•</span>
+                      <span>Personalization</span>
+                    </div>
                   </div>
                 </div>
               </div>
