@@ -295,22 +295,69 @@ export function PlatformMapAnimated() {
             <div className="flex-1 rounded-xl border-2 border-border bg-background p-4 lg:p-6">
               
               {/* C) Built-in Apps Area */}
-              <div className={`mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("apps")}`}>
-                {/* Row of 3 boxes */}
-                <div className="grid grid-cols-3 gap-3 mb-3">
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
-                    <Bot className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm font-medium">Universal Assistant</span>
+              <div className={`mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("apps")} relative`}>
+                {/* Row of 3 boxes + Scoped agents badge */}
+                <div className="grid grid-cols-3 gap-3 mb-3 relative">
+                  {/* Universal Assistant */}
+                  <div className={`p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Bot className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-sm font-semibold">Universal Assistant</span>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mb-2">100+ languages</p>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Web app</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-0.5">
+                        Chat apps
+                        <MessageSquare className="w-2 h-2" />
+                        <Smartphone className="w-2 h-2" />
+                        <Laptop className="w-2 h-2" />
+                        <Mail className="w-2 h-2" />
+                      </span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Service portals</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Intranets</span>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
-                    <Search className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm font-medium">Enterprise Search</span>
+                  
+                  {/* Enterprise Search */}
+                  <div className={`p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Search className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-sm font-semibold">Enterprise Search</span>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mb-2">Precise and granular control</p>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">AI summaries</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Vetted answers</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Filters</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Search results page</span>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
-                    <Users className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm font-medium">Specialized Agents</span>
+                  
+                  {/* Specialized Agents */}
+                  <div className={`p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Users className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-sm font-semibold">Specialized Agents</span>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mb-2">First-party apps</p>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">World Knowledge</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded border border-dashed border-muted-foreground/50 text-muted-foreground">etc.</span>
+                    </div>
+                  </div>
+                  
+                  {/* Scoped agents badge - positioned to the right */}
+                  <div className="absolute -right-16 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                    {/* Connecting line */}
+                    <div className="w-4 h-px bg-foreground/40" aria-hidden="true" />
+                    {/* Badge */}
+                    <div className="px-2.5 py-1.5 rounded-full bg-foreground text-background text-[10px] font-semibold whitespace-nowrap">
+                      Scoped agents
+                    </div>
                   </div>
                 </div>
+                
                 {/* Conversations API bar */}
                 <div className={`flex items-center justify-center gap-2 p-2.5 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox}`}>
                   <MessageSquare className="w-4 h-4 text-accent" />
