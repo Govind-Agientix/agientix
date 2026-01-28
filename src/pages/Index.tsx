@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
+import { PlatformMapSection } from "@/components/home/PlatformMapSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { TimelineSection } from "@/components/home/TimelineSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
@@ -18,6 +19,7 @@ const Index = () => {
       <Header />
       <main className="flex-1">
         <HeroSection />
+        <PlatformMapSection />
         <CategoriesSection />
         <TimelineSection />
         <TestimonialsSection />
