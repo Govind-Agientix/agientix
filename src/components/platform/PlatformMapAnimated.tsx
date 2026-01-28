@@ -61,57 +61,54 @@ import {
 } from "@/components/ui/tooltip";
 import {
   SiSlack,
-  SiGooglemeet,
+  SiZoom,
   SiGoogledrive,
-  SiDropbox,
-  SiSalesforce,
-  SiZendesk,
+  SiGmail,
   SiJira,
   SiConfluence,
-  SiNotion,
-  SiAsana,
-  SiTrello,
+  SiZendesk,
+  SiSalesforce,
+  SiHubspot,
+  SiOkta,
   SiGithub,
   SiGitlab,
-  SiAirtable,
-  SiHubspot,
-  SiIntercom,
-  SiZoom,
-  SiFigma,
-  SiLinear,
-  SiMongodb,
-  SiSnowflake,
-  SiGooglecloud,
+  SiDropbox,
   SiBox,
-  SiAtlassian,
+  SiCloudflare,
+  SiTwilio,
+  SiNotion,
+  // TODO: SiMicrosoftTeams not available - using SiMicrosoftoutlook fallback not available either
+  // TODO: SiOutlook not available in package
+  // TODO: SiServiceNow not available in package  
+  // TODO: SiAWS/SiAmazonAWS not available - using placeholder
+  // TODO: SiAzure/SiMicrosoftAzure not available - using placeholder
 } from "@icons-pack/react-simple-icons";
 
 // Integration logos for the systems row
+// Note: Some requested icons (Microsoft Teams, Outlook, ServiceNow, AWS, Azure) are not available in @icons-pack/react-simple-icons
 const INTEGRATION_LOGOS = [
   { name: "Slack", Icon: SiSlack },
-  { name: "Google Meet", Icon: SiGooglemeet },
+  // TODO: Microsoft Teams icon not available in package
+  { name: "Zoom", Icon: SiZoom },
   { name: "Google Drive", Icon: SiGoogledrive },
-  { name: "Dropbox", Icon: SiDropbox },
-  { name: "Salesforce", Icon: SiSalesforce },
-  { name: "Zendesk", Icon: SiZendesk },
+  { name: "Gmail", Icon: SiGmail },
+  // TODO: Outlook icon not available in package
   { name: "Jira", Icon: SiJira },
   { name: "Confluence", Icon: SiConfluence },
-  { name: "Notion", Icon: SiNotion },
-  { name: "Asana", Icon: SiAsana },
-  { name: "Trello", Icon: SiTrello },
+  // TODO: ServiceNow icon not available in package
+  { name: "Zendesk", Icon: SiZendesk },
+  { name: "Salesforce", Icon: SiSalesforce },
+  { name: "HubSpot", Icon: SiHubspot },
+  { name: "Okta", Icon: SiOkta },
   { name: "GitHub", Icon: SiGithub },
   { name: "GitLab", Icon: SiGitlab },
-  { name: "Airtable", Icon: SiAirtable },
-  { name: "HubSpot", Icon: SiHubspot },
-  { name: "Intercom", Icon: SiIntercom },
-  { name: "Zoom", Icon: SiZoom },
-  { name: "Figma", Icon: SiFigma },
-  { name: "Linear", Icon: SiLinear },
-  { name: "MongoDB", Icon: SiMongodb },
-  { name: "Snowflake", Icon: SiSnowflake },
-  { name: "Google Cloud", Icon: SiGooglecloud },
+  { name: "Dropbox", Icon: SiDropbox },
   { name: "Box", Icon: SiBox },
-  { name: "Atlassian", Icon: SiAtlassian },
+  // TODO: AWS icon not available in package
+  // TODO: Azure icon not available in package
+  { name: "Cloudflare", Icon: SiCloudflare },
+  { name: "Twilio", Icon: SiTwilio },
+  { name: "Notion", Icon: SiNotion },
 ];
 
 // Brand Logo Tile Component
@@ -538,8 +535,8 @@ export function PlatformMapAnimated() {
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-1">
                         Chat apps
                         <SiSlack size={12} color="default" />
-                        <SiGooglemeet size={12} color="default" />
                         <SiZoom size={12} color="default" />
+                        <SiGmail size={12} color="default" />
                       </span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Service portals</span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Intranets</span>
