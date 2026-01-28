@@ -43,7 +43,15 @@ import {
   Package,
   Truck,
   Store,
-  Blocks
+  Blocks,
+  Globe,
+  Server,
+  Folder,
+  Bell,
+  Clipboard,
+  Archive,
+  Bookmark,
+  Plus
 } from "lucide-react";
 
 // Business system icons for the bottom row
@@ -595,16 +603,34 @@ export function PlatformMapAnimated() {
                 </div>
 
                 {/* 100+ Business Systems */}
-                <div className={`p-3 rounded-lg bg-muted/50 border ${hoverBox}`}>
-                  <p className="text-xs font-semibold text-center text-muted-foreground mb-2">
-                    100+ business systems
+                <div className={`p-3 rounded-lg bg-muted/50 border mt-4 ${hoverBox}`}>
+                  <p className="text-xs font-semibold text-center text-muted-foreground mb-3">
+                    100+ business and content systems
                   </p>
-                  <div className="flex items-center justify-center gap-2 flex-wrap">
-                    {businessIcons.map((Icon, i) => (
-                      <div key={i} className="w-7 h-7 rounded bg-background border flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-sm">
-                        <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                  <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                    {/* System icon tiles - 16 generic icons */}
+                    {[
+                      Mail, Calendar, FileText, Database, Cloud, Globe, 
+                      Server, HardDrive, Folder, FolderOpen, Users, 
+                      MessageSquare, Bell, Clipboard, Archive, Bookmark
+                    ].map((Icon, i) => (
+                      <div 
+                        key={i} 
+                        className="w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-sm hover:border-primary/30"
+                      >
+                        <Icon className="w-4 h-4 text-muted-foreground" />
                       </div>
                     ))}
+                    
+                    {/* Bring your own system tile */}
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/30 ml-2">
+                      <div className="w-6 h-6 rounded-md bg-primary/20 border border-dashed border-primary/50 flex items-center justify-center">
+                        <Plus className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-medium text-primary leading-tight max-w-[100px]">
+                        Bring your own system via Agientix Gateway
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
