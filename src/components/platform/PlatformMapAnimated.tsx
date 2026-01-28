@@ -67,10 +67,37 @@ export function PlatformMapAnimated() {
 
         {/* Main Card */}
         <div className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8 overflow-x-auto">
-          {/* CTA Button - Top Right */}
+          {/* CTA Button - Top Right with Callout */}
           <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10">
+            {/* Animated Callout - Decorative */}
+            <div 
+              className="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1"
+              aria-hidden="true"
+            >
+              {/* Label Bubble */}
+              <div className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold whitespace-nowrap animate-bounce shadow-lg">
+                Demo starts here
+              </div>
+              {/* Curved Arrow */}
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                className="text-primary animate-pulse"
+              >
+                <path 
+                  d="M4 12 C 8 12, 12 8, 16 8 L 14 5 M 16 8 L 14 11" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            
             <Button size="sm" asChild>
-              <Link to="/demo">
+              <Link to="/demo" aria-label="See it in action (demo)">
                 See it in action
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
