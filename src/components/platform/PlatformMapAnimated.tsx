@@ -59,10 +59,64 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  SiSlack,
+  SiGooglemeet,
+  SiGoogledrive,
+  SiDropbox,
+  SiSalesforce,
+  SiZendesk,
+  SiJira,
+  SiConfluence,
+  SiNotion,
+  SiAsana,
+  SiTrello,
+  SiGithub,
+  SiGitlab,
+  SiAirtable,
+  SiHubspot,
+  SiIntercom,
+  SiZoom,
+  SiFigma,
+  SiLinear,
+  SiMongodb,
+  SiSnowflake,
+  SiGooglecloud,
+  SiBox,
+  SiAtlassian,
+} from "@icons-pack/react-simple-icons";
+
+// Integration logos for the systems row
+const INTEGRATION_LOGOS = [
+  { name: "Slack", Icon: SiSlack },
+  { name: "Google Meet", Icon: SiGooglemeet },
+  { name: "Google Drive", Icon: SiGoogledrive },
+  { name: "Dropbox", Icon: SiDropbox },
+  { name: "Salesforce", Icon: SiSalesforce },
+  { name: "Zendesk", Icon: SiZendesk },
+  { name: "Jira", Icon: SiJira },
+  { name: "Confluence", Icon: SiConfluence },
+  { name: "Notion", Icon: SiNotion },
+  { name: "Asana", Icon: SiAsana },
+  { name: "Trello", Icon: SiTrello },
+  { name: "GitHub", Icon: SiGithub },
+  { name: "GitLab", Icon: SiGitlab },
+  { name: "Airtable", Icon: SiAirtable },
+  { name: "HubSpot", Icon: SiHubspot },
+  { name: "Intercom", Icon: SiIntercom },
+  { name: "Zoom", Icon: SiZoom },
+  { name: "Figma", Icon: SiFigma },
+  { name: "Linear", Icon: SiLinear },
+  { name: "MongoDB", Icon: SiMongodb },
+  { name: "Snowflake", Icon: SiSnowflake },
+  { name: "Google Cloud", Icon: SiGooglecloud },
+  { name: "Box", Icon: SiBox },
+  { name: "Atlassian", Icon: SiAtlassian },
+];
 
 // Brand Logo Tile Component
 interface BrandLogoTileProps {
-  icon: ComponentType<{ size?: number; color?: string }>;
+  icon: ComponentType<{ size?: number | string; color?: string }>;
   name: string;
 }
 
@@ -797,19 +851,10 @@ export function PlatformMapAnimated() {
                   <p className="text-xs font-semibold text-center text-muted-foreground mb-3">
                     100+ business and content systems
                   </p>
-                  <div className="flex items-center justify-center gap-1.5 flex-wrap">
-                    {/* System icon tiles - 16 generic icons */}
-                    {[
-                      Mail, Calendar, FileText, Database, Cloud, Globe, 
-                      Server, HardDrive, Folder, FolderOpen, Users, 
-                      MessageSquare, Bell, Clipboard, Archive, Bookmark
-                    ].map((Icon, i) => (
-                      <div 
-                        key={i} 
-                        className="w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-sm hover:border-primary/30"
-                      >
-                        <Icon className="w-4 h-4 text-muted-foreground" />
-                      </div>
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {/* Brand logo tiles */}
+                    {INTEGRATION_LOGOS.map((logo) => (
+                      <BrandLogoTile key={logo.name} icon={logo.Icon} name={logo.name} />
                     ))}
                     
                     {/* Bring your own system tile */}
@@ -822,6 +867,9 @@ export function PlatformMapAnimated() {
                       </span>
                     </div>
                   </div>
+                  <p className="text-[9px] text-muted-foreground/60 text-center mt-2">
+                    Logos are trademarks of their respective owners.
+                  </p>
                 </div>
               </div>
             </div>
