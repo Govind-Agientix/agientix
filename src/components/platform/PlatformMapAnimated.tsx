@@ -371,46 +371,61 @@ export function PlatformMapAnimated() {
               {/* D) Core Architecture Area */}
               <div className={`flex gap-4 mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("core")}`}>
                 {/* Left: Agentic Reasoning Engine */}
-                <div className={`w-44 shrink-0 p-4 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 ${hoverBox}`}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Brain className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold">Agentic Reasoning Engine</span>
+                <div className={`flex-1 p-4 rounded-xl bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Brain className="w-5 h-5 text-amber-700" />
+                    <span className="text-sm font-semibold text-amber-900">Agentic Reasoning Engine</span>
                   </div>
-                  {/* Loop Area with Orbit */}
-                  <div className="relative flex flex-col items-center gap-2 py-4">
-                    {/* Dashed Orbit Ring */}
-                    <div 
-                      className="orbit-ring absolute inset-0 rounded-full border-2 border-dashed border-primary/30 pointer-events-none"
-                      style={{ margin: "-8px" }}
-                      aria-hidden="true"
-                    />
-                    
-                    {/* Loop Steps */}
-                    {loopSteps.map((step, index) => {
-                      const isActive = index === activeStepIndex;
-                      const StepIcon = step.icon;
-                      return (
-                        <div
-                          key={step.label}
-                          className={`
-                            relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
-                            transition-all duration-500 ease-in-out
-                            ${isActive 
-                              ? "bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg shadow-primary/30" 
-                              : "bg-primary/15 text-muted-foreground"
-                            }
-                          `}
-                        >
-                          <StepIcon className={`w-3 h-3 transition-all duration-500 ${isActive ? "scale-110" : "scale-100"}`} />
-                          {step.label}
+                  
+                  {/* Loop Container - dashed outline */}
+                  <div className="relative border-2 border-dashed border-amber-300 rounded-2xl p-4 bg-amber-50/50">
+                    {/* Three circles with arrows */}
+                    <div className="flex items-center justify-center gap-2">
+                      {/* Circle 1: Makes intelligent plans */}
+                      <div className="flex flex-col items-center gap-1.5">
+                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
+                          <RotateCcw className="w-5 h-5 text-amber-600" />
                         </div>
-                      );
-                    })}
+                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Makes intelligent plans</span>
+                      </div>
+                      
+                      {/* Arrow 1->2 */}
+                      <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
+                        <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      
+                      {/* Circle 2: Executes the right tools */}
+                      <div className="flex flex-col items-center gap-1.5">
+                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
+                          <Wrench className="w-5 h-5 text-amber-600" />
+                        </div>
+                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Executes the right tools</span>
+                      </div>
+                      
+                      {/* Arrow 2->3 */}
+                      <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
+                        <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      
+                      {/* Circle 3: Observes and adapts */}
+                      <div className="flex flex-col items-center gap-1.5">
+                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
+                          <Eye className="w-5 h-5 text-amber-600" />
+                        </div>
+                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Observes and adapts</span>
+                      </div>
+                    </div>
+                    
+                    {/* Curved return arrow (bottom) */}
+                    <svg className="absolute -bottom-1 left-1/2 -translate-x-1/2" width="120" height="20" viewBox="0 0 120 20" aria-hidden="true">
+                      <path d="M110 4 C 100 16, 20 16, 10 4" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-300" strokeDasharray="4 3" />
+                      <path d="M14 2 L10 6 L6 2" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-300" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
                 </div>
 
                 {/* Right: Feature boxes */}
-                <div className="flex-1 grid grid-cols-3 gap-2 content-start">
+                <div className="w-48 shrink-0 grid grid-cols-1 gap-2 content-start">
                   <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <Route className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">LLM routing</span>
