@@ -258,9 +258,9 @@ export function PlatformMapAnimated() {
             </Button>
           </div>
 
-          {/* Scrollable Diagram Wrapper - fixed 1200px canvas */}
+          {/* Scrollable Diagram Wrapper - fixed 1280px canvas */}
           <div className="overflow-x-auto -mx-4 md:-mx-6 lg:-mx-8 mt-10 md:mt-6">
-            <div className="min-w-[1200px] w-[1200px] mx-auto relative px-4 md:px-6 lg:px-8">
+            <div className="min-w-[1280px] w-[1280px] mx-auto relative px-4 md:px-6 lg:px-8">
               {/* Animated Connector Lines SVG Overlay */}
               <svg 
                 className="absolute inset-0 w-full h-full pointer-events-none z-[1] hidden lg:block"
@@ -417,10 +417,10 @@ export function PlatformMapAnimated() {
                 />
               </svg>
 
-              {/* Diagram Container */}
-              <div className="flex gap-4 lg:gap-6 relative z-[2]">
+              {/* Diagram Container - 3-column grid */}
+              <div className="grid grid-cols-[180px_1fr_300px] gap-4 lg:gap-6 relative z-[2]">
             {/* Left Labels Column */}
-            <div className="flex flex-col gap-4 w-28 shrink-0 pt-2">
+            <div className="flex flex-col gap-4 pt-2">
               <div className="h-[140px] flex items-center">
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                   Built-in apps
@@ -794,8 +794,8 @@ export function PlatformMapAnimated() {
               </div>
             </div>
 
-            {/* F) Right-side Modules Column */}
-            <div className={`w-52 shrink-0 flex flex-col gap-4 p-2 -m-2 rounded-xl ${getSpotlightClass("rightStack")}`}>
+            {/* F) Right-side Modules Column - fills 300px grid column */}
+            <div className={`flex flex-col gap-4 p-2 -m-2 rounded-xl ${getSpotlightClass("rightStack")}`}>
               {/* For operators - no code */}
               <div className="rounded-xl bg-foreground text-background p-3">
                 <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70 mb-3">
