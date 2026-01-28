@@ -733,44 +733,47 @@ export function PlatformMapAnimated() {
               {/* G) Bottom Bars */}
               <div className="mt-6 space-y-3">
                 {/* Governance bar */}
-                <div className={`flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 ${hoverBox} ${getSpotlightClass("governance")}`}>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 mr-2">
+                <div className={`flex items-center gap-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 ${hoverBox} ${getSpotlightClass("governance")}`}>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700 shrink-0">
                     Governance
                   </span>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {[
-                      { icon: Settings, label: "Setup" },
-                      { icon: BarChart3, label: "Insights" },
-                      { icon: LineChart, label: "Analytics" },
-                      { icon: Activity, label: "Monitoring" },
-                      { icon: Gauge, label: "Performance" },
-                      { icon: FileCheck, label: "Compliance" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-700 transition-all duration-200 hover:bg-emerald-500/30">
-                        <item.icon className="w-3 h-3" />
-                        {item.label}
-                      </div>
+                      "Streamline config",
+                      "Agentix Setup",
+                      "AI Assistant Insights",
+                      "Value insights",
+                      "Data API",
+                      "Employee Experience Insights",
+                      "Employee Comms",
+                      "Knowledge Studio"
+                    ].map((label, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-[9px] font-medium text-emerald-700 transition-all duration-200 hover:bg-emerald-500/30">
+                        {label}
+                      </span>
                     ))}
                   </div>
                 </div>
 
                 {/* Security bar */}
-                <div className={`flex items-center gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 ${hoverBox} ${getSpotlightClass("security")}`}>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-700 mr-2">
+                <div className={`flex items-center gap-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 ${hoverBox} ${getSpotlightClass("security")}`}>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 shrink-0">
                     Security
                   </span>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {[
-                      { icon: Key, label: "SSO/SAML" },
-                      { icon: ScrollText, label: "Audit Logs" },
-                      { icon: ShieldCheck, label: "Encryption" },
-                      { icon: Lock, label: "RBAC" },
-                      { icon: EyeOff, label: "Redaction" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-700 transition-all duration-200 hover:bg-blue-500/30">
-                        <item.icon className="w-3 h-3" />
-                        {item.label}
-                      </div>
+                      "SSO/SAML",
+                      "SCIM",
+                      "RBAC",
+                      "Audit logs",
+                      "Encryption",
+                      "Redaction",
+                      "DLP",
+                      "Data residency"
+                    ].map((label, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded-full bg-blue-500/20 text-[9px] font-medium text-blue-700 transition-all duration-200 hover:bg-blue-500/30">
+                        {label}
+                      </span>
                     ))}
                   </div>
                 </div>
