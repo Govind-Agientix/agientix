@@ -481,21 +481,84 @@ export function PlatformMapAnimated() {
                 </div>
               </div>
 
-              {/* E) Under Core */}
+              {/* E) Under Core - Plugins Row */}
               <div className="space-y-3">
-                {/* Row of 3 boxes */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
-                    <Plug className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-sm font-medium">Ways to connect</span>
+                {/* Plugins row: 2 small boxes + 1 big Plugins box */}
+                <div className="flex gap-3 relative">
+                  {/* Left small boxes */}
+                  <div className="flex flex-col gap-2 w-40 shrink-0">
+                    <div className={`p-2.5 rounded-lg bg-secondary/30 border ${hoverBox}`}>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <Plug className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                        <span className="text-xs font-semibold">Ways to connect</span>
+                      </div>
+                      <p className="text-[9px] text-muted-foreground ml-5">Content connectors with self-serve setup</p>
+                    </div>
+                    <div className={`p-2.5 rounded-lg bg-secondary/30 border ${hoverBox}`}>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <SearchCode className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                        <span className="text-xs font-semibold">Search techniques</span>
+                      </div>
+                      <p className="text-[9px] text-muted-foreground ml-5">Indexed, live, hybrid</p>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
-                    <SearchCode className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-sm font-medium">Search techniques</span>
+                  
+                  {/* Big Plugins box */}
+                  <div className={`flex-1 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Puzzle className="w-4 h-4 text-muted-foreground shrink-0" />
+                      <span className="text-sm font-semibold">Plugins</span>
+                    </div>
+                    
+                    <div className="flex gap-4">
+                      {/* Group A: Search */}
+                      <div className="flex-1">
+                        <div className="flex items-start gap-1">
+                          <span className="text-muted-foreground text-lg leading-none">[</span>
+                          <div>
+                            <p className="text-[10px] font-semibold text-muted-foreground mb-1">Search</p>
+                            <div className="flex flex-wrap gap-1">
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Knowledge bases</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Files & business systems</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">World knowledge</span>
+                            </div>
+                          </div>
+                          <span className="text-muted-foreground text-lg leading-none">]</span>
+                        </div>
+                      </div>
+                      
+                      {/* Group B: Action */}
+                      <div className="flex-1">
+                        <div className="flex items-start gap-1">
+                          <span className="text-muted-foreground text-lg leading-none">[</span>
+                          <div>
+                            <p className="text-[10px] font-semibold text-muted-foreground mb-1">Action</p>
+                            <div className="flex flex-wrap gap-1">
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">IT</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">HR</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Finance/procurement</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Marketing</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Sales</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Engineering</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Facilities</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-muted text-muted-foreground">Legal</span>
+                              <span className="px-1.5 py-0.5 text-[9px] font-medium rounded border border-dashed border-muted-foreground/50 text-muted-foreground">etc.</span>
+                            </div>
+                          </div>
+                          <span className="text-muted-foreground text-lg leading-none">]</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
-                    <Puzzle className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-sm font-medium">Plugins & tools</span>
+                  
+                  {/* Custom tools badge - positioned to the right */}
+                  <div className="absolute -right-16 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                    {/* Connecting line */}
+                    <div className="w-4 h-px bg-foreground/40" aria-hidden="true" />
+                    {/* Badge */}
+                    <div className="px-2.5 py-1.5 rounded-full bg-foreground text-background text-[10px] font-semibold whitespace-nowrap">
+                      Custom tools
+                    </div>
                   </div>
                 </div>
 
