@@ -74,17 +74,40 @@ const sectionOrder: SectionName[] = ["apps", "core", "governance", "security"];
 export function PlatformMapAnimated() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [activeSection, setActiveSection] = useState<SectionName>("apps");
+  const [activeLoopIndex, setActiveLoopIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Detect reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   // Cycle through reasoning loop steps every 1400ms
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const interval = setInterval(() => {
       setActiveStepIndex((prev) => (prev + 1) % 3);
     }, 1400);
     return () => clearInterval(interval);
-  }, []);
+  }, [prefersReducedMotion]);
+
+  // Cycle through loop circles every 1400ms
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const interval = setInterval(() => {
+      setActiveLoopIndex((prev) => (prev + 1) % 3);
+    }, 1400);
+    return () => clearInterval(interval);
+  }, [prefersReducedMotion]);
 
   // Cycle through spotlight sections every 3000ms
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const interval = setInterval(() => {
       setActiveSection((prev) => {
         const currentIndex = sectionOrder.indexOf(prev);
@@ -92,7 +115,7 @@ export function PlatformMapAnimated() {
       });
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [prefersReducedMotion]);
 
   // Hover box class for consistent styling
   const hoverBox = "transition-all duration-300 hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5";
@@ -102,6 +125,14 @@ export function PlatformMapAnimated() {
     activeSection === section 
       ? "ring-2 ring-primary/20 bg-primary/5 transition-all duration-500" 
       : "transition-all duration-500";
+
+  // Loop circle active class
+  const getLoopCircleClass = (index: number) => {
+    const isActive = activeLoopIndex === index && !prefersReducedMotion;
+    return isActive
+      ? "border-amber-500 bg-amber-50 shadow-lg shadow-amber-200/50 scale-105"
+      : "border-amber-400 bg-white shadow-sm";
+  };
 
   return (
     <section id="platform-map" className="section-padding bg-secondary/20">
@@ -114,6 +145,9 @@ export function PlatformMapAnimated() {
         .orbit-ring {
           animation: orbit-spin 12s linear infinite;
         }
+        .orbit-ring-reduced {
+          animation: none;
+        }
         @keyframes flow-dash {
           to { stroke-dashoffset: -20; }
         }
@@ -124,6 +158,17 @@ export function PlatformMapAnimated() {
         .flow-line-slow {
           stroke-dasharray: 6 6;
           animation: flow-dash 1.2s linear infinite;
+        }
+        .flow-line-reduced {
+          animation: none;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .orbit-ring {
+            animation: none;
+          }
+          .flow-line, .flow-line-slow {
+            animation: none;
+          }
         }
       `}</style>
       <div className="container-wide">
@@ -385,47 +430,56 @@ export function PlatformMapAnimated() {
                     <span className="text-sm font-semibold text-amber-900">Agentic Reasoning Engine</span>
                   </div>
                   
-                  {/* Loop Container - dashed outline */}
-                  <div className="relative border-2 border-dashed border-amber-300 rounded-2xl p-4 bg-amber-50/50">
-                    {/* Three circles with arrows */}
-                    <div className="flex items-center justify-center gap-2">
-                      {/* Circle 1: Makes intelligent plans */}
-                      <div className="flex flex-col items-center gap-1.5">
-                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
-                          <RotateCcw className="w-5 h-5 text-amber-600" />
+                  {/* Loop Container - dashed outline with orbit animation */}
+                  <div className="relative p-4 bg-amber-50/50">
+                    {/* Spinning dashed border overlay */}
+                    <div 
+                      className={`absolute inset-0 border-2 border-dashed border-amber-300 rounded-2xl pointer-events-none ${prefersReducedMotion ? '' : 'orbit-ring'}`}
+                      aria-hidden="true"
+                    />
+                    
+                    {/* Static content inside */}
+                    <div className="relative z-10">
+                      {/* Three circles with arrows */}
+                      <div className="flex items-center justify-center gap-2">
+                        {/* Circle 1: Makes intelligent plans */}
+                        <div className="flex flex-col items-center gap-1.5">
+                          <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${getLoopCircleClass(0)}`}>
+                            <RotateCcw className={`w-5 h-5 transition-colors duration-300 ${activeLoopIndex === 0 ? 'text-amber-700' : 'text-amber-600'}`} />
+                          </div>
+                          <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Makes intelligent plans</span>
                         </div>
-                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Makes intelligent plans</span>
-                      </div>
-                      
-                      {/* Arrow 1->2 */}
-                      <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
-                        <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      
-                      {/* Circle 2: Executes the right tools */}
-                      <div className="flex flex-col items-center gap-1.5">
-                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
-                          <Wrench className="w-5 h-5 text-amber-600" />
+                        
+                        {/* Arrow 1->2 */}
+                        <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
+                          <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        
+                        {/* Circle 2: Executes the right tools */}
+                        <div className="flex flex-col items-center gap-1.5">
+                          <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${getLoopCircleClass(1)}`}>
+                            <Wrench className={`w-5 h-5 transition-colors duration-300 ${activeLoopIndex === 1 ? 'text-amber-700' : 'text-amber-600'}`} />
+                          </div>
+                          <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Executes the right tools</span>
                         </div>
-                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Executes the right tools</span>
-                      </div>
-                      
-                      {/* Arrow 2->3 */}
-                      <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
-                        <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      
-                      {/* Circle 3: Observes and adapts */}
-                      <div className="flex flex-col items-center gap-1.5">
-                        <div className="w-14 h-14 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-sm">
-                          <Eye className="w-5 h-5 text-amber-600" />
+                        
+                        {/* Arrow 2->3 */}
+                        <svg width="24" height="16" viewBox="0 0 24 16" className="shrink-0 -mt-6" aria-hidden="true">
+                          <path d="M2 8 L18 8 M14 4 L18 8 L14 12" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-400" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        
+                        {/* Circle 3: Observes and adapts */}
+                        <div className="flex flex-col items-center gap-1.5">
+                          <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${getLoopCircleClass(2)}`}>
+                            <Eye className={`w-5 h-5 transition-colors duration-300 ${activeLoopIndex === 2 ? 'text-amber-700' : 'text-amber-600'}`} />
+                          </div>
+                          <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Observes and adapts</span>
                         </div>
-                        <span className="text-[9px] font-medium text-amber-800 text-center leading-tight max-w-16">Observes and adapts</span>
                       </div>
                     </div>
                     
                     {/* Curved return arrow (bottom) */}
-                    <svg className="absolute -bottom-1 left-1/2 -translate-x-1/2" width="120" height="20" viewBox="0 0 120 20" aria-hidden="true">
+                    <svg className="absolute -bottom-1 left-1/2 -translate-x-1/2 z-10" width="120" height="20" viewBox="0 0 120 20" aria-hidden="true">
                       <path d="M110 4 C 100 16, 20 16, 10 4" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-300" strokeDasharray="4 3" />
                       <path d="M14 2 L10 6 L6 2" stroke="currentColor" strokeWidth="2" fill="none" className="text-amber-300" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
