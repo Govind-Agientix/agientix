@@ -167,11 +167,31 @@ export function PlatformMapAnimated() {
         .flow-line-reduced {
           animation: none;
         }
+        @keyframes cta-glow {
+          0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4); }
+          50% { box-shadow: 0 0 20px 8px hsl(var(--primary) / 0.3); }
+        }
+        .cta-glow-active {
+          animation: cta-glow 1.2s ease-in-out;
+        }
+        @keyframes callout-pulse {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+          50% { transform: translateY(-4px) scale(1.05); opacity: 0.9; }
+        }
+        .callout-pulse-active {
+          animation: callout-pulse 0.6s ease-in-out 2;
+        }
         @media (prefers-reduced-motion: reduce) {
           .orbit-ring {
             animation: none;
           }
           .flow-line, .flow-line-slow {
+            animation: none;
+          }
+          .cta-glow-active {
+            animation: none;
+          }
+          .callout-pulse-active {
             animation: none;
           }
         }
@@ -195,13 +215,17 @@ export function PlatformMapAnimated() {
         >
           {/* CTA Button - Pinned in card header (outside scroll) */}
           <div className={`absolute top-4 right-4 md:top-6 md:right-6 z-20 rounded-lg p-1 -m-1 ${getSpotlightClass("cta")}`}>
-            {/* Animated Callout - Decorative */}
+            {/* Animated Callout - Decorative (pointer-events-none to not block clicks) */}
             <div 
               className="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1 hidden sm:flex"
               aria-hidden="true"
             >
               {/* Label Bubble */}
-              <div className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold whitespace-nowrap animate-bounce shadow-lg">
+              <div className={`
+                px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold whitespace-nowrap shadow-lg
+                ${!prefersReducedMotion ? 'animate-bounce' : ''}
+                ${activeSection === "cta" && !prefersReducedMotion ? 'callout-pulse-active' : ''}
+              `}>
                 Demo starts here
               </div>
               {/* Curved Arrow */}
@@ -210,7 +234,7 @@ export function PlatformMapAnimated() {
                 height="24" 
                 viewBox="0 0 24 24" 
                 fill="none" 
-                className="text-primary animate-pulse"
+                className={`text-primary ${!prefersReducedMotion ? 'animate-pulse' : ''}`}
               >
                 <path 
                   d="M4 12 C 8 12, 12 8, 16 8 L 14 5 M 16 8 L 14 11" 
@@ -222,7 +246,11 @@ export function PlatformMapAnimated() {
               </svg>
             </div>
             
-            <Button size="sm" asChild>
+            <Button 
+              size="sm" 
+              asChild 
+              className={`relative ${activeSection === "cta" && !prefersReducedMotion ? 'cta-glow-active' : ''}`}
+            >
               <Link to="/demo" aria-label="See it in action (demo)">
                 See it in action
                 <ArrowRight className="ml-2 h-4 w-4" />
