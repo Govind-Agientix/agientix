@@ -104,116 +104,13 @@ export function PlatformMapAnimated() {
           </p>
         </div>
 
-        {/* Main Card - Relative container for SVG overlay */}
-        <div className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8 overflow-x-auto">
-          {/* Animated Connector Lines SVG Overlay */}
-          <svg 
-            className="absolute inset-0 w-full h-full pointer-events-none z-[1] hidden lg:block"
-            aria-hidden="true"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              {/* Arrow marker */}
-              <marker 
-                id="arrowhead" 
-                markerWidth="8" 
-                markerHeight="6" 
-                refX="7" 
-                refY="3" 
-                orient="auto"
-              >
-                <polygon 
-                  points="0 0, 8 3, 0 6" 
-                  fill="hsl(var(--primary))" 
-                  opacity="0.6"
-                />
-              </marker>
-              <marker 
-                id="arrowhead-accent" 
-                markerWidth="8" 
-                markerHeight="6" 
-                refX="7" 
-                refY="3" 
-                orient="auto"
-              >
-                <polygon 
-                  points="0 0, 8 3, 0 6" 
-                  fill="hsl(var(--accent))" 
-                  opacity="0.6"
-                />
-              </marker>
-            </defs>
-            
-            {/* Built-in apps -> Reasoning Engine */}
-            <path 
-              d="M 200 140 C 200 180, 180 200, 180 240"
-              className="flow-line"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.5"
-              markerEnd="url(#arrowhead)"
-            />
-            
-            {/* Conversations API -> Reasoning Engine */}
-            <path 
-              d="M 350 170 C 350 200, 280 220, 220 250"
-              className="flow-line"
-              stroke="hsl(var(--accent))"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.4"
-              markerEnd="url(#arrowhead-accent)"
-            />
-            
-            {/* Reasoning Engine -> Feature boxes */}
-            <path 
-              d="M 280 300 C 320 300, 360 280, 400 270"
-              className="flow-line-slow"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.4"
-              markerEnd="url(#arrowhead)"
-            />
-            
-            {/* Feature boxes -> Right modules */}
-            <path 
-              d="M 620 260 C 680 260, 720 220, 780 200"
-              className="flow-line"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.4"
-              markerEnd="url(#arrowhead)"
-            />
-            
-            {/* Plugins -> Permissions bar */}
-            <path 
-              d="M 400 420 C 400 460, 450 480, 500 490"
-              className="flow-line-slow"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.3"
-            />
-            
-            {/* Permissions -> Business systems */}
-            <path 
-              d="M 500 510 C 500 540, 500 560, 500 580"
-              className="flow-line-slow"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.3"
-              markerEnd="url(#arrowhead)"
-            />
-          </svg>
-          {/* CTA Button - Top Right with Callout */}
-          <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10">
+        {/* Main Card */}
+        <div className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8">
+          {/* CTA Button - Pinned in card header (outside scroll) */}
+          <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20">
             {/* Animated Callout - Decorative */}
             <div 
-              className="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1"
+              className="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1 hidden sm:flex"
               aria-hidden="true"
             >
               {/* Label Bubble */}
@@ -246,8 +143,115 @@ export function PlatformMapAnimated() {
             </Button>
           </div>
 
-          {/* Diagram Container */}
-          <div className="flex gap-4 lg:gap-6 mt-10 md:mt-6 min-w-[900px]">
+          {/* Scrollable Diagram Wrapper */}
+          <div className="overflow-x-auto -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 mt-10 md:mt-6">
+            <div className="min-w-[980px] max-w-5xl mx-auto relative">
+              {/* Animated Connector Lines SVG Overlay */}
+              <svg 
+                className="absolute inset-0 w-full h-full pointer-events-none z-[1] hidden lg:block"
+                aria-hidden="true"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  {/* Arrow marker */}
+                  <marker 
+                    id="arrowhead" 
+                    markerWidth="8" 
+                    markerHeight="6" 
+                    refX="7" 
+                    refY="3" 
+                    orient="auto"
+                  >
+                    <polygon 
+                      points="0 0, 8 3, 0 6" 
+                      fill="hsl(var(--primary))" 
+                      opacity="0.6"
+                    />
+                  </marker>
+                  <marker 
+                    id="arrowhead-accent" 
+                    markerWidth="8" 
+                    markerHeight="6" 
+                    refX="7" 
+                    refY="3" 
+                    orient="auto"
+                  >
+                    <polygon 
+                      points="0 0, 8 3, 0 6" 
+                      fill="hsl(var(--accent))" 
+                      opacity="0.6"
+                    />
+                  </marker>
+                </defs>
+                
+                {/* Built-in apps -> Reasoning Engine */}
+                <path 
+                  d="M 200 140 C 200 180, 180 200, 180 240"
+                  className="flow-line"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.5"
+                  markerEnd="url(#arrowhead)"
+                />
+                
+                {/* Conversations API -> Reasoning Engine */}
+                <path 
+                  d="M 350 170 C 350 200, 280 220, 220 250"
+                  className="flow-line"
+                  stroke="hsl(var(--accent))"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.4"
+                  markerEnd="url(#arrowhead-accent)"
+                />
+                
+                {/* Reasoning Engine -> Feature boxes */}
+                <path 
+                  d="M 280 300 C 320 300, 360 280, 400 270"
+                  className="flow-line-slow"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.4"
+                  markerEnd="url(#arrowhead)"
+                />
+                
+                {/* Feature boxes -> Right modules */}
+                <path 
+                  d="M 620 260 C 680 260, 720 220, 780 200"
+                  className="flow-line"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.4"
+                  markerEnd="url(#arrowhead)"
+                />
+                
+                {/* Plugins -> Permissions bar */}
+                <path 
+                  d="M 400 420 C 400 460, 450 480, 500 490"
+                  className="flow-line-slow"
+                  stroke="hsl(var(--muted-foreground))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                />
+                
+                {/* Permissions -> Business systems */}
+                <path 
+                  d="M 500 510 C 500 540, 500 560, 500 580"
+                  className="flow-line-slow"
+                  stroke="hsl(var(--muted-foreground))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                  markerEnd="url(#arrowhead)"
+                />
+              </svg>
+
+              {/* Diagram Container */}
+              <div className="flex gap-4 lg:gap-6 relative z-[2]">
             {/* Left Labels Column */}
             <div className="flex flex-col gap-4 w-28 shrink-0 pt-2">
               <div className="h-[140px] flex items-center">
@@ -431,50 +435,52 @@ export function PlatformMapAnimated() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* G) Bottom Bars */}
-          <div className="mt-6 space-y-3 min-w-[900px]">
-            {/* Governance bar */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 mr-2">
-                Governance
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { icon: Settings, label: "Setup" },
-                  { icon: BarChart3, label: "Insights" },
-                  { icon: LineChart, label: "Analytics" },
-                  { icon: Activity, label: "Monitoring" },
-                  { icon: Gauge, label: "Performance" },
-                  { icon: FileCheck, label: "Compliance" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-700">
-                    <item.icon className="w-3 h-3" />
-                    {item.label}
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* Security bar */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
-              <span className="text-xs font-semibold uppercase tracking-wider text-blue-700 mr-2">
-                Security
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { icon: Key, label: "SSO/SAML" },
-                  { icon: ScrollText, label: "Audit Logs" },
-                  { icon: ShieldCheck, label: "Encryption" },
-                  { icon: Lock, label: "RBAC" },
-                  { icon: EyeOff, label: "Redaction" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-700">
-                    <item.icon className="w-3 h-3" />
-                    {item.label}
+              {/* G) Bottom Bars */}
+              <div className="mt-6 space-y-3">
+                {/* Governance bar */}
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 mr-2">
+                    Governance
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { icon: Settings, label: "Setup" },
+                      { icon: BarChart3, label: "Insights" },
+                      { icon: LineChart, label: "Analytics" },
+                      { icon: Activity, label: "Monitoring" },
+                      { icon: Gauge, label: "Performance" },
+                      { icon: FileCheck, label: "Compliance" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-700">
+                        <item.icon className="w-3 h-3" />
+                        {item.label}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Security bar */}
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-700 mr-2">
+                    Security
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { icon: Key, label: "SSO/SAML" },
+                      { icon: ScrollText, label: "Audit Logs" },
+                      { icon: ShieldCheck, label: "Encryption" },
+                      { icon: Lock, label: "RBAC" },
+                      { icon: EyeOff, label: "Redaction" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-700">
+                        <item.icon className="w-3 h-3" />
+                        {item.label}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
