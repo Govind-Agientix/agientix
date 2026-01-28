@@ -59,16 +59,41 @@ const loopSteps = [
   { icon: Eye, label: "Observes & improves" },
 ];
 
+// Section names for spotlight
+type SectionName = "apps" | "core" | "governance" | "security";
+const sectionOrder: SectionName[] = ["apps", "core", "governance", "security"];
+
 export function PlatformMapAnimated() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState<SectionName>("apps");
 
-  // Cycle through steps every 1400ms
+  // Cycle through reasoning loop steps every 1400ms
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStepIndex((prev) => (prev + 1) % 3);
     }, 1400);
     return () => clearInterval(interval);
   }, []);
+
+  // Cycle through spotlight sections every 3000ms
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSection((prev) => {
+        const currentIndex = sectionOrder.indexOf(prev);
+        return sectionOrder[(currentIndex + 1) % sectionOrder.length];
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Hover box class for consistent styling
+  const hoverBox = "transition-all duration-300 hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5";
+  
+  // Spotlight class for active section
+  const getSpotlightClass = (section: SectionName) => 
+    activeSection === section 
+      ? "ring-2 ring-primary/20 bg-primary/5 transition-all duration-500" 
+      : "transition-all duration-500";
 
   return (
     <section id="platform-map" className="section-padding bg-secondary/20">
@@ -270,33 +295,33 @@ export function PlatformMapAnimated() {
             <div className="flex-1 rounded-xl border-2 border-border bg-background p-4 lg:p-6">
               
               {/* C) Built-in Apps Area */}
-              <div className="mb-6">
+              <div className={`mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("apps")}`}>
                 {/* Row of 3 boxes */}
                 <div className="grid grid-cols-3 gap-3 mb-3">
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
                     <Bot className="w-5 h-5 text-primary shrink-0" />
                     <span className="text-sm font-medium">Universal Assistant</span>
                   </div>
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
                     <Search className="w-5 h-5 text-primary shrink-0" />
                     <span className="text-sm font-medium">Enterprise Search</span>
                   </div>
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 ${hoverBox}`}>
                     <Users className="w-5 h-5 text-primary shrink-0" />
                     <span className="text-sm font-medium">Specialized Agents</span>
                   </div>
                 </div>
                 {/* Conversations API bar */}
-                <div className="flex items-center justify-center gap-2 p-2.5 rounded-lg bg-accent/10 border border-accent/30">
+                <div className={`flex items-center justify-center gap-2 p-2.5 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox}`}>
                   <MessageSquare className="w-4 h-4 text-accent" />
                   <span className="text-sm font-medium text-accent">Conversations API</span>
                 </div>
               </div>
 
               {/* D) Core Architecture Area */}
-              <div className="flex gap-4 mb-6">
+              <div className={`flex gap-4 mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("core")}`}>
                 {/* Left: Agentic Reasoning Engine */}
-                <div className="w-44 shrink-0 p-4 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
+                <div className={`w-44 shrink-0 p-4 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 ${hoverBox}`}>
                   <div className="flex items-center gap-2 mb-3">
                     <Brain className="w-5 h-5 text-primary" />
                     <span className="text-sm font-semibold">Agentic Reasoning Engine</span>
@@ -336,23 +361,23 @@ export function PlatformMapAnimated() {
 
                 {/* Right: Feature boxes */}
                 <div className="flex-1 grid grid-cols-3 gap-2 content-start">
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border">
+                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <Route className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">LLM routing</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border">
+                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <Zap className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">Automation</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border">
+                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <Database className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">Memory</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border">
+                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">Structured extraction</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border">
+                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
                     <Shield className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-xs font-medium">Safety guardrails</span>
                   </div>
@@ -363,34 +388,34 @@ export function PlatformMapAnimated() {
               <div className="space-y-3">
                 {/* Row of 3 boxes */}
                 <div className="grid grid-cols-3 gap-3">
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
                     <Plug className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-sm font-medium">Ways to connect</span>
                   </div>
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
                     <SearchCode className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-sm font-medium">Search techniques</span>
                   </div>
-                  <div className="flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border">
+                  <div className={`flex items-center gap-2 p-3 rounded-lg bg-secondary/30 border ${hoverBox}`}>
                     <Puzzle className="w-4 h-4 text-muted-foreground shrink-0" />
                     <span className="text-sm font-medium">Plugins & tools</span>
                   </div>
                 </div>
 
                 {/* Permissions bar */}
-                <div className="flex items-center justify-center gap-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                <div className={`flex items-center justify-center gap-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 ${hoverBox}`}>
                   <Lock className="w-4 h-4 text-amber-600" />
                   <span className="text-sm font-medium text-amber-700">Permissions & access controls</span>
                 </div>
 
                 {/* 100+ Business Systems */}
-                <div className="p-3 rounded-lg bg-muted/50 border">
+                <div className={`p-3 rounded-lg bg-muted/50 border ${hoverBox}`}>
                   <p className="text-xs font-semibold text-center text-muted-foreground mb-2">
                     100+ business systems
                   </p>
                   <div className="flex items-center justify-center gap-2 flex-wrap">
                     {businessIcons.map((Icon, i) => (
-                      <div key={i} className="w-7 h-7 rounded bg-background border flex items-center justify-center">
+                      <div key={i} className="w-7 h-7 rounded bg-background border flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-sm">
                         <Icon className="w-3.5 h-3.5 text-muted-foreground" />
                       </div>
                     ))}
@@ -440,7 +465,7 @@ export function PlatformMapAnimated() {
               {/* G) Bottom Bars */}
               <div className="mt-6 space-y-3">
                 {/* Governance bar */}
-                <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+                <div className={`flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 ${hoverBox} ${getSpotlightClass("governance")}`}>
                   <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 mr-2">
                     Governance
                   </span>
@@ -453,7 +478,7 @@ export function PlatformMapAnimated() {
                       { icon: Gauge, label: "Performance" },
                       { icon: FileCheck, label: "Compliance" },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-700">
+                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-700 transition-all duration-200 hover:bg-emerald-500/30">
                         <item.icon className="w-3 h-3" />
                         {item.label}
                       </div>
@@ -462,7 +487,7 @@ export function PlatformMapAnimated() {
                 </div>
 
                 {/* Security bar */}
-                <div className="flex items-center gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                <div className={`flex items-center gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 ${hoverBox} ${getSpotlightClass("security")}`}>
                   <span className="text-xs font-semibold uppercase tracking-wider text-blue-700 mr-2">
                     Security
                   </span>
@@ -474,7 +499,7 @@ export function PlatformMapAnimated() {
                       { icon: Lock, label: "RBAC" },
                       { icon: EyeOff, label: "Redaction" },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-700">
+                      <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-700 transition-all duration-200 hover:bg-blue-500/30">
                         <item.icon className="w-3 h-3" />
                         {item.label}
                       </div>
