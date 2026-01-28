@@ -67,15 +67,16 @@ const loopSteps = [
   { icon: Eye, label: "Observes & improves" },
 ];
 
-// Section names for spotlight
-type SectionName = "apps" | "core" | "governance" | "security";
-const sectionOrder: SectionName[] = ["apps", "core", "governance", "security"];
+// Section names for spotlight tour
+type SectionName = "apps" | "conversations" | "core" | "plugins" | "permissions" | "systems" | "rightStack" | "governance" | "security" | "cta";
+const sectionOrder: SectionName[] = ["apps", "conversations", "core", "plugins", "permissions", "systems", "rightStack", "governance", "security", "cta"];
 
 export function PlatformMapAnimated() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [activeSection, setActiveSection] = useState<SectionName>("apps");
   const [activeLoopIndex, setActiveLoopIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Detect reduced motion preference
   useEffect(() => {
@@ -105,17 +106,21 @@ export function PlatformMapAnimated() {
     return () => clearInterval(interval);
   }, [prefersReducedMotion]);
 
-  // Cycle through spotlight sections every 3000ms
+  // Cycle through spotlight sections every 2200ms (pausable)
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isPaused) return;
     const interval = setInterval(() => {
       setActiveSection((prev) => {
         const currentIndex = sectionOrder.indexOf(prev);
         return sectionOrder[(currentIndex + 1) % sectionOrder.length];
       });
-    }, 3000);
+    }, 2200);
     return () => clearInterval(interval);
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, isPaused]);
+
+  // Pause/resume handlers
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
   // Hover box class for consistent styling
   const hoverBox = "transition-all duration-300 hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5";
@@ -123,7 +128,7 @@ export function PlatformMapAnimated() {
   // Spotlight class for active section
   const getSpotlightClass = (section: SectionName) => 
     activeSection === section 
-      ? "ring-2 ring-primary/20 bg-primary/5 transition-all duration-500" 
+      ? "ring-2 ring-primary/30 bg-primary/5 shadow-lg shadow-primary/10 transition-all duration-500" 
       : "transition-all duration-500";
 
   // Loop circle active class
@@ -182,10 +187,14 @@ export function PlatformMapAnimated() {
           </p>
         </div>
 
-        {/* Main Card */}
-        <div className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8">
+        {/* Main Card - with pause on hover */}
+        <div 
+          className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* CTA Button - Pinned in card header (outside scroll) */}
-          <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20">
+          <div className={`absolute top-4 right-4 md:top-6 md:right-6 z-20 rounded-lg p-1 -m-1 ${getSpotlightClass("cta")}`}>
             {/* Animated Callout - Decorative */}
             <div 
               className="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1 hidden sm:flex"
@@ -464,7 +473,7 @@ export function PlatformMapAnimated() {
                 </div>
                 
                 {/* Conversations API bar */}
-                <div className={`flex items-center justify-between px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox}`}>
+                <div className={`flex items-center justify-between px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox} ${getSpotlightClass("conversations")}`}>
                   <div className="flex items-center gap-2">
                     <MessageSquare className="w-4 h-4 text-accent" />
                     <span className="text-sm font-semibold text-accent">Conversations API</span>
@@ -596,7 +605,7 @@ export function PlatformMapAnimated() {
               </div>
 
               {/* E) Under Core - Plugins Row */}
-              <div className="space-y-3">
+              <div className={`space-y-3 p-3 -m-3 rounded-xl ${getSpotlightClass("plugins")}`}>
                 {/* Plugins row: 2 small boxes + 1 big Plugins box */}
                 <div className="flex gap-3 relative">
                   {/* Left small boxes */}
@@ -677,7 +686,7 @@ export function PlatformMapAnimated() {
                 </div>
 
                 {/* Permissions bar with dashed line */}
-                <div className="relative py-4">
+                <div className={`relative py-4 rounded-xl ${getSpotlightClass("permissions")}`}>
                   {/* Dashed horizontal line */}
                   <div className="absolute top-1/2 left-0 right-0 border-t-2 border-dashed border-amber-400/50" aria-hidden="true" />
                   
@@ -709,7 +718,7 @@ export function PlatformMapAnimated() {
                 </div>
 
                 {/* 100+ Business Systems */}
-                <div className={`p-3 rounded-lg bg-muted/50 border mt-4 ${hoverBox}`}>
+                <div className={`p-3 rounded-lg bg-muted/50 border mt-4 ${hoverBox} ${getSpotlightClass("systems")}`}>
                   <p className="text-xs font-semibold text-center text-muted-foreground mb-3">
                     100+ business and content systems
                   </p>
@@ -743,7 +752,7 @@ export function PlatformMapAnimated() {
             </div>
 
             {/* F) Right-side Modules Column */}
-            <div className="w-52 shrink-0 flex flex-col gap-4">
+            <div className={`w-52 shrink-0 flex flex-col gap-4 p-2 -m-2 rounded-xl ${getSpotlightClass("rightStack")}`}>
               {/* For operators - no code */}
               <div className="rounded-xl bg-foreground text-background p-3">
                 <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70 mb-3">
