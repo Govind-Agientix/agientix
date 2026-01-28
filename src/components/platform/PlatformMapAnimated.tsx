@@ -258,9 +258,9 @@ export function PlatformMapAnimated() {
             </Button>
           </div>
 
-          {/* Scrollable Diagram Wrapper */}
-          <div className="overflow-x-auto -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 mt-10 md:mt-6">
-            <div className="min-w-[980px] max-w-5xl mx-auto relative">
+          {/* Scrollable Diagram Wrapper - fixed 1200px canvas */}
+          <div className="overflow-x-auto -mx-4 md:-mx-6 lg:-mx-8 mt-10 md:mt-6">
+            <div className="min-w-[1200px] w-[1200px] mx-auto relative px-4 md:px-6 lg:px-8">
               {/* Animated Connector Lines SVG Overlay */}
               <svg 
                 className="absolute inset-0 w-full h-full pointer-events-none z-[1] hidden lg:block"
@@ -888,7 +888,7 @@ export function PlatformMapAnimated() {
             </div>
             </div>
 
-              {/* G) Bottom Bars */}
+              {/* G) Bottom Bars - inside 1200px canvas */}
               <div className="mt-6 space-y-3">
                 {/* Governance bar */}
                 <div className={`flex items-center gap-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 ${hoverBox} ${getSpotlightClass("governance")}`}>
