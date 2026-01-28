@@ -424,27 +424,59 @@ export function PlatformMapAnimated() {
                   </div>
                 </div>
 
-                {/* Right: Feature boxes */}
-                <div className="w-48 shrink-0 grid grid-cols-1 gap-2 content-start">
-                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
-                    <Route className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-xs font-medium">LLM routing</span>
+                {/* Right: Feature boxes - pale gold, compact */}
+                <div className="w-56 shrink-0 grid grid-cols-1 gap-1.5 content-start">
+                  {/* 1) Robust LLM ecosystem */}
+                  <div className={`p-2 rounded-lg bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Route className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                      <span className="text-[11px] font-semibold text-amber-900">Robust LLM ecosystem</span>
+                    </div>
+                    <div className="flex items-center gap-1 ml-5">
+                      {[...Array(6)].map((_, i) => (
+                        <div key={i} className="w-2.5 h-2.5 rounded-full bg-amber-300/60 border border-amber-400/40" />
+                      ))}
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
-                    <Zap className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-xs font-medium">Automation</span>
+                  
+                  {/* 2) Agentic Automation */}
+                  <div className={`p-2 rounded-lg bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Zap className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                      <span className="text-[11px] font-semibold text-amber-900">Agentic Automation</span>
+                    </div>
+                    <div className="ml-5 flex flex-wrap gap-x-2 gap-y-0.5">
+                      <span className="text-[9px] text-amber-700">• Resolves tasks</span>
+                      <span className="text-[9px] text-amber-700">• Generates plans</span>
+                      <span className="text-[9px] text-amber-700">• Checks policies</span>
+                      <span className="text-[9px] text-amber-700">• Executes actions</span>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
-                    <Database className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-xs font-medium">Memory</span>
+                  
+                  {/* 3) Memory Types */}
+                  <div className={`p-2 rounded-lg bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Database className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                      <span className="text-[11px] font-semibold text-amber-900">Memory Types</span>
+                    </div>
+                    <div className="ml-5 flex flex-wrap gap-x-2 gap-y-0.5">
+                      <span className="text-[9px] text-amber-700">• Semantic</span>
+                      <span className="text-[9px] text-amber-700">• Episodic</span>
+                      <span className="text-[9px] text-amber-700">• Working</span>
+                      <span className="text-[9px] text-amber-700">• Procedural</span>
+                    </div>
                   </div>
-                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
-                    <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-xs font-medium">Structured extraction</span>
+                  
+                  {/* 4) Structured data analysis */}
+                  <div className={`flex items-center gap-2 p-2 rounded-lg bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                    <FileText className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                    <span className="text-[11px] font-semibold text-amber-900">Structured data analysis</span>
                   </div>
-                  <div className={`flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border ${hoverBox}`}>
-                    <Shield className="w-4 h-4 text-muted-foreground shrink-0" />
-                    <span className="text-xs font-medium">Safety guardrails</span>
+                  
+                  {/* 5) Safety guardrails */}
+                  <div className={`flex items-center gap-2 p-2 rounded-lg bg-amber-50 border border-amber-200 ${hoverBox}`}>
+                    <Shield className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                    <span className="text-[11px] font-semibold text-amber-900">Safety guardrails</span>
                   </div>
                 </div>
               </div>
