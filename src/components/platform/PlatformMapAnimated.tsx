@@ -72,7 +72,7 @@ export function PlatformMapAnimated() {
 
   return (
     <section id="platform-map" className="section-padding bg-secondary/20">
-      {/* Inline styles for orbit animation */}
+      {/* Inline styles for animations */}
       <style>{`
         @keyframes orbit-spin {
           from { transform: rotate(0deg); }
@@ -80,6 +80,17 @@ export function PlatformMapAnimated() {
         }
         .orbit-ring {
           animation: orbit-spin 12s linear infinite;
+        }
+        @keyframes flow-dash {
+          to { stroke-dashoffset: -20; }
+        }
+        .flow-line {
+          stroke-dasharray: 8 4;
+          animation: flow-dash 0.8s linear infinite;
+        }
+        .flow-line-slow {
+          stroke-dasharray: 6 6;
+          animation: flow-dash 1.2s linear infinite;
         }
       `}</style>
       <div className="container-wide">
@@ -93,8 +104,111 @@ export function PlatformMapAnimated() {
           </p>
         </div>
 
-        {/* Main Card */}
+        {/* Main Card - Relative container for SVG overlay */}
         <div className="relative rounded-2xl border bg-card p-4 md:p-6 lg:p-8 overflow-x-auto">
+          {/* Animated Connector Lines SVG Overlay */}
+          <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none z-[1] hidden lg:block"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              {/* Arrow marker */}
+              <marker 
+                id="arrowhead" 
+                markerWidth="8" 
+                markerHeight="6" 
+                refX="7" 
+                refY="3" 
+                orient="auto"
+              >
+                <polygon 
+                  points="0 0, 8 3, 0 6" 
+                  fill="hsl(var(--primary))" 
+                  opacity="0.6"
+                />
+              </marker>
+              <marker 
+                id="arrowhead-accent" 
+                markerWidth="8" 
+                markerHeight="6" 
+                refX="7" 
+                refY="3" 
+                orient="auto"
+              >
+                <polygon 
+                  points="0 0, 8 3, 0 6" 
+                  fill="hsl(var(--accent))" 
+                  opacity="0.6"
+                />
+              </marker>
+            </defs>
+            
+            {/* Built-in apps -> Reasoning Engine */}
+            <path 
+              d="M 200 140 C 200 180, 180 200, 180 240"
+              className="flow-line"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.5"
+              markerEnd="url(#arrowhead)"
+            />
+            
+            {/* Conversations API -> Reasoning Engine */}
+            <path 
+              d="M 350 170 C 350 200, 280 220, 220 250"
+              className="flow-line"
+              stroke="hsl(var(--accent))"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+              markerEnd="url(#arrowhead-accent)"
+            />
+            
+            {/* Reasoning Engine -> Feature boxes */}
+            <path 
+              d="M 280 300 C 320 300, 360 280, 400 270"
+              className="flow-line-slow"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+              markerEnd="url(#arrowhead)"
+            />
+            
+            {/* Feature boxes -> Right modules */}
+            <path 
+              d="M 620 260 C 680 260, 720 220, 780 200"
+              className="flow-line"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.4"
+              markerEnd="url(#arrowhead)"
+            />
+            
+            {/* Plugins -> Permissions bar */}
+            <path 
+              d="M 400 420 C 400 460, 450 480, 500 490"
+              className="flow-line-slow"
+              stroke="hsl(var(--muted-foreground))"
+              strokeWidth="1.5"
+              fill="none"
+              opacity="0.3"
+            />
+            
+            {/* Permissions -> Business systems */}
+            <path 
+              d="M 500 510 C 500 540, 500 560, 500 580"
+              className="flow-line-slow"
+              stroke="hsl(var(--muted-foreground))"
+              strokeWidth="1.5"
+              fill="none"
+              opacity="0.3"
+              markerEnd="url(#arrowhead)"
+            />
+          </svg>
           {/* CTA Button - Top Right with Callout */}
           <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10">
             {/* Animated Callout - Decorative */}
