@@ -503,24 +503,24 @@ export function PlatformMapAnimated() {
                 />
               </svg>
 
-              {/* Diagram Container - 3-column grid */}
-              <div className="grid grid-cols-[180px_1fr_300px] gap-4 lg:gap-6 relative z-[2]">
+              {/* Diagram Container - 3-column grid, items-start for top alignment */}
+              <div className="grid grid-cols-[140px_1fr_280px] gap-3 lg:gap-4 relative z-[2] items-start">
             {/* Left Labels Column */}
-            <div className="flex flex-col gap-4 pt-2">
-              <div className="h-[140px] flex items-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className="flex flex-col gap-2 pt-1">
+              <div className="h-[120px] flex items-center">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
                   Built-in apps
                 </span>
               </div>
-              <div className="flex-1 flex items-start pt-8">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="flex-1 flex items-start pt-4">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
                   Core architecture
                 </span>
               </div>
             </div>
 
-            {/* A) Outer Diagram Frame */}
-            <div className="flex-1 rounded-xl border-2 border-border bg-background p-4 lg:p-6">
+            {/* A) Outer Diagram Frame - reduced padding */}
+            <div className="flex-1 rounded-xl border-2 border-border bg-background p-3 lg:p-4">
               
               {/* C) Built-in Apps Area */}
               <div className={`mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("apps")} relative`}>
@@ -873,8 +873,8 @@ export function PlatformMapAnimated() {
               </div>
             </div>
 
-            {/* F) Right-side Modules Column - fills 300px grid column */}
-            <div className={`flex flex-col gap-4 p-2 -m-2 rounded-xl ${getSpotlightClass("rightStack")}`}>
+            {/* F) Right-side Modules Column - top-aligned with Built-in apps */}
+            <div className={`flex flex-col gap-3 rounded-xl ${getSpotlightClass("rightStack")}`}>
               {/* For operators - no code */}
               <div className="rounded-xl bg-foreground text-background p-3">
                 <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70 mb-3">
