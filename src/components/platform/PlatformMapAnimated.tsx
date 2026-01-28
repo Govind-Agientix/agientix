@@ -143,15 +143,12 @@ export function PlatformMapAnimated() {
     <section id="platform-map" className="section-padding bg-secondary/20">
       {/* Inline styles for animations */}
       <style>{`
-        @keyframes orbit-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        @keyframes dash-flow {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -24; }
         }
-        .orbit-ring {
-          animation: orbit-spin 12s linear infinite;
-        }
-        .orbit-ring-reduced {
-          animation: none;
+        .dash-flow-animate {
+          animation: dash-flow 1.5s linear infinite;
         }
         @keyframes flow-dash {
           to { stroke-dashoffset: -20; }
@@ -186,6 +183,9 @@ export function PlatformMapAnimated() {
             animation: none;
           }
           .flow-line, .flow-line-slow {
+            animation: none;
+          }
+          .dash-flow-animate {
             animation: none;
           }
           .cta-glow-active {
@@ -519,13 +519,28 @@ export function PlatformMapAnimated() {
                     <span className="text-sm font-semibold text-amber-900">Agentic Reasoning Engine</span>
                   </div>
                   
-                  {/* Loop Container - dashed outline with orbit animation */}
-                  <div className="relative p-4 bg-amber-50/50">
-                    {/* Spinning dashed border overlay */}
-                    <div 
-                      className={`absolute inset-0 border-2 border-dashed border-amber-300 rounded-2xl pointer-events-none ${prefersReducedMotion ? '' : 'orbit-ring'}`}
+                  {/* Loop Container - dashed outline with flowing dash animation (no rotation) */}
+                  <div className="relative p-4 bg-amber-50/50 rounded-2xl">
+                    {/* SVG dashed border with animated stroke-dashoffset */}
+                    <svg 
+                      className="absolute inset-0 w-full h-full pointer-events-none" 
                       aria-hidden="true"
-                    />
+                      preserveAspectRatio="none"
+                    >
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="calc(100% - 2px)" 
+                        height="calc(100% - 2px)" 
+                        rx="16" 
+                        ry="16"
+                        fill="none"
+                        stroke="#fcd34d"
+                        strokeWidth="2"
+                        strokeDasharray="12 6"
+                        className={prefersReducedMotion ? '' : 'dash-flow-animate'}
+                      />
+                    </svg>
                     
                     {/* Static content inside */}
                     <div className="relative z-10">
