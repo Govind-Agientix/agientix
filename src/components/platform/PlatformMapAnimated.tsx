@@ -231,100 +231,152 @@ export function PlatformMapAnimated() {
                 preserveAspectRatio="none"
               >
                 <defs>
-                  {/* Arrow marker */}
-                  <marker 
-                    id="arrowhead" 
-                    markerWidth="8" 
-                    markerHeight="6" 
-                    refX="7" 
-                    refY="3" 
-                    orient="auto"
-                  >
-                    <polygon 
-                      points="0 0, 8 3, 0 6" 
-                      fill="hsl(var(--primary))" 
-                      opacity="0.6"
-                    />
+                  {/* Arrow markers */}
+                  <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--primary))" opacity="0.6" />
                   </marker>
-                  <marker 
-                    id="arrowhead-accent" 
-                    markerWidth="8" 
-                    markerHeight="6" 
-                    refX="7" 
-                    refY="3" 
-                    orient="auto"
-                  >
-                    <polygon 
-                      points="0 0, 8 3, 0 6" 
-                      fill="hsl(var(--accent))" 
-                      opacity="0.6"
-                    />
+                  <marker id="arrowhead-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#d97706" opacity="0.5" />
+                  </marker>
+                  <marker id="arrowhead-muted" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--muted-foreground))" opacity="0.4" />
                   </marker>
                 </defs>
                 
-                {/* Built-in apps -> Reasoning Engine */}
+                {/* 1. Built-in Apps (Universal Assistant) -> Conversations API */}
                 <path 
-                  d="M 200 140 C 200 180, 180 200, 180 240"
-                  className="flow-line"
+                  d="M 180 130 C 180 160, 320 160, 350 150"
+                  className={prefersReducedMotion ? '' : 'flow-line'}
                   stroke="hsl(var(--primary))"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.5"
-                  markerEnd="url(#arrowhead)"
-                />
-                
-                {/* Conversations API -> Reasoning Engine */}
-                <path 
-                  d="M 350 170 C 350 200, 280 220, 220 250"
-                  className="flow-line"
-                  stroke="hsl(var(--accent))"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
                   fill="none"
                   opacity="0.4"
-                  markerEnd="url(#arrowhead-accent)"
+                  strokeDasharray="6 4"
                 />
                 
-                {/* Reasoning Engine -> Feature boxes */}
+                {/* 2. Built-in Apps (Enterprise Search) -> Conversations API */}
                 <path 
-                  d="M 280 300 C 320 300, 360 280, 400 270"
-                  className="flow-line-slow"
+                  d="M 350 130 C 350 145, 380 155, 400 160"
+                  className={prefersReducedMotion ? '' : 'flow-line'}
                   stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.35"
+                  strokeDasharray="6 4"
+                />
+                
+                {/* 3. Conversations API -> Core (Agentic Reasoning Engine) */}
+                <path 
+                  d="M 400 185 C 400 220, 280 230, 200 260"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="#d97706"
                   strokeWidth="2"
                   fill="none"
-                  opacity="0.4"
-                  markerEnd="url(#arrowhead)"
+                  opacity="0.45"
+                  strokeDasharray="8 5"
+                  markerEnd="url(#arrowhead-amber)"
                 />
                 
-                {/* Feature boxes -> Right modules */}
+                {/* 4. Core Loop -> Feature boxes (right side) */}
                 <path 
-                  d="M 620 260 C 680 260, 720 220, 780 200"
-                  className="flow-line"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="2"
+                  d="M 320 320 C 380 320, 420 290, 480 280"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="#d97706"
+                  strokeWidth="1.5"
                   fill="none"
-                  opacity="0.4"
-                  markerEnd="url(#arrowhead)"
+                  opacity="0.35"
+                  strokeDasharray="5 4"
                 />
                 
-                {/* Plugins -> Permissions bar */}
+                {/* 5. Core -> Plugins row */}
                 <path 
-                  d="M 400 420 C 400 460, 450 480, 500 490"
-                  className="flow-line-slow"
+                  d="M 250 380 C 250 420, 300 440, 350 450"
+                  className={prefersReducedMotion ? '' : 'flow-line'}
                   stroke="hsl(var(--muted-foreground))"
                   strokeWidth="1.5"
                   fill="none"
                   opacity="0.3"
+                  strokeDasharray="6 4"
+                  markerEnd="url(#arrowhead-muted)"
                 />
                 
-                {/* Permissions -> Business systems */}
+                {/* 6. Plugins box -> Permissions bar */}
                 <path 
-                  d="M 500 510 C 500 540, 500 560, 500 580"
-                  className="flow-line-slow"
+                  d="M 450 500 C 450 530, 480 550, 500 570"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="#d97706"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.35"
+                  strokeDasharray="5 4"
+                />
+                
+                {/* 7. Permissions -> Business Systems */}
+                <path 
+                  d="M 500 590 C 500 610, 500 630, 500 650"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
                   stroke="hsl(var(--muted-foreground))"
                   strokeWidth="1.5"
                   fill="none"
                   opacity="0.3"
+                  strokeDasharray="4 3"
+                  markerEnd="url(#arrowhead-muted)"
+                />
+                
+                {/* 8. Feature boxes -> Right module stack (Operators) */}
+                <path 
+                  d="M 640 280 C 700 280, 740 240, 780 220"
+                  className={prefersReducedMotion ? '' : 'flow-line'}
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.35"
+                  strokeDasharray="6 4"
                   markerEnd="url(#arrowhead)"
+                />
+                
+                {/* 9. Plugins -> Right module stack (Developers) */}
+                <path 
+                  d="M 640 470 C 700 470, 750 420, 790 380"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                  strokeDasharray="5 4"
+                />
+                
+                {/* 10. Core -> Governance bar */}
+                <path 
+                  d="M 300 400 C 300 680, 200 720, 150 740"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="#10b981"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.25"
+                  strokeDasharray="8 6"
+                />
+                
+                {/* 11. Core -> Security bar */}
+                <path 
+                  d="M 320 400 C 340 700, 250 760, 180 780"
+                  className={prefersReducedMotion ? '' : 'flow-line-slow'}
+                  stroke="#3b82f6"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.25"
+                  strokeDasharray="8 6"
+                />
+                
+                {/* 12. Scoped Agents -> Right modules */}
+                <path 
+                  d="M 620 100 C 700 100, 760 140, 790 180"
+                  className={prefersReducedMotion ? '' : 'flow-line'}
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                  strokeDasharray="6 4"
                 />
               </svg>
 
