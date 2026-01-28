@@ -535,12 +535,11 @@ export function PlatformMapAnimated() {
                     <p className="text-[10px] text-muted-foreground mb-2">100+ languages</p>
                     <div className="flex flex-wrap gap-1">
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Web app</span>
-                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-0.5">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-1">
                         Chat apps
-                        <MessageSquare className="w-2 h-2" />
-                        <Smartphone className="w-2 h-2" />
-                        <Laptop className="w-2 h-2" />
-                        <Mail className="w-2 h-2" />
+                        <SiSlack size={12} color="default" />
+                        <SiGooglemeet size={12} color="default" />
+                        <SiZoom size={12} color="default" />
                       </span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Service portals</span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Intranets</span>
