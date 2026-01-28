@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -51,9 +52,36 @@ const businessIcons = [
   Smartphone, Laptop, CreditCard, Headphones, Package, Truck, Store, Blocks
 ];
 
+// Loop step data
+const loopSteps = [
+  { icon: RotateCcw, label: "Plans" },
+  { icon: Wrench, label: "Executes tools" },
+  { icon: Eye, label: "Observes & improves" },
+];
+
 export function PlatformMapAnimated() {
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+
+  // Cycle through steps every 1400ms
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStepIndex((prev) => (prev + 1) % 3);
+    }, 1400);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="platform-map" className="section-padding bg-secondary/20">
+      {/* Inline styles for orbit animation */}
+      <style>{`
+        @keyframes orbit-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .orbit-ring {
+          animation: orbit-spin 12s linear infinite;
+        }
+      `}</style>
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-12">
@@ -155,21 +183,36 @@ export function PlatformMapAnimated() {
                     <Brain className="w-5 h-5 text-primary" />
                     <span className="text-sm font-semibold">Agentic Reasoning Engine</span>
                   </div>
-                  {/* Loop Area */}
-                  <div className="relative flex flex-col items-center gap-2 py-3">
-                    <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-primary/30" />
-                    <div className="relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-xs font-medium">
-                      <RotateCcw className="w-3 h-3" />
-                      Plans
-                    </div>
-                    <div className="relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-xs font-medium">
-                      <Wrench className="w-3 h-3" />
-                      Executes tools
-                    </div>
-                    <div className="relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-xs font-medium">
-                      <Eye className="w-3 h-3" />
-                      Observes & improves
-                    </div>
+                  {/* Loop Area with Orbit */}
+                  <div className="relative flex flex-col items-center gap-2 py-4">
+                    {/* Dashed Orbit Ring */}
+                    <div 
+                      className="orbit-ring absolute inset-0 rounded-full border-2 border-dashed border-primary/30 pointer-events-none"
+                      style={{ margin: "-8px" }}
+                      aria-hidden="true"
+                    />
+                    
+                    {/* Loop Steps */}
+                    {loopSteps.map((step, index) => {
+                      const isActive = index === activeStepIndex;
+                      const StepIcon = step.icon;
+                      return (
+                        <div
+                          key={step.label}
+                          className={`
+                            relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
+                            transition-all duration-500 ease-in-out
+                            ${isActive 
+                              ? "bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg shadow-primary/30" 
+                              : "bg-primary/15 text-muted-foreground"
+                            }
+                          `}
+                        >
+                          <StepIcon className={`w-3 h-3 transition-all duration-500 ${isActive ? "scale-110" : "scale-100"}`} />
+                          {step.label}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
