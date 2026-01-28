@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -53,6 +53,38 @@ import {
   Bookmark,
   Plus
 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+// Brand Logo Tile Component
+interface BrandLogoTileProps {
+  icon: ComponentType<{ size?: number; color?: string }>;
+  name: string;
+}
+
+function BrandLogoTile({ icon: Icon, name }: BrandLogoTileProps) {
+  return (
+    <TooltipProvider delayDuration={200}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div 
+            className="w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-sm hover:border-primary/30"
+            aria-label={name}
+          >
+            <Icon size={18} color="default" />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="text-xs">
+          {name}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
 
 // Business system icons for the bottom row
 const businessIcons = [
