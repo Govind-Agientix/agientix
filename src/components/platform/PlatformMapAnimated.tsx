@@ -359,9 +359,12 @@ export function PlatformMapAnimated() {
                 </div>
                 
                 {/* Conversations API bar */}
-                <div className={`flex items-center justify-center gap-2 p-2.5 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox}`}>
-                  <MessageSquare className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium text-accent">Conversations API</span>
+                <div className={`flex items-center justify-between px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 ${hoverBox}`}>
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4 text-accent" />
+                    <span className="text-sm font-semibold text-accent">Conversations API</span>
+                  </div>
+                  <span className="text-[11px] text-muted-foreground">Support agent-to-agent and custom entry points</span>
                 </div>
               </div>
 
