@@ -562,10 +562,36 @@ export function PlatformMapAnimated() {
                   </div>
                 </div>
 
-                {/* Permissions bar */}
-                <div className={`flex items-center justify-center gap-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 ${hoverBox}`}>
-                  <Lock className="w-4 h-4 text-amber-600" />
-                  <span className="text-sm font-medium text-amber-700">Permissions & access controls</span>
+                {/* Permissions bar with dashed line */}
+                <div className="relative py-4">
+                  {/* Dashed horizontal line */}
+                  <div className="absolute top-1/2 left-0 right-0 border-t-2 border-dashed border-amber-400/50" aria-hidden="true" />
+                  
+                  {/* Left label */}
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-medium text-amber-700 bg-card px-1">
+                    Permissions mirroring
+                  </span>
+                  
+                  {/* Right label */}
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-medium text-amber-700 bg-card px-1">
+                    Access control lists
+                  </span>
+                  
+                  {/* Center pill */}
+                  <div className="relative flex justify-center">
+                    <div className={`flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-300 shadow-sm ${hoverBox}`}>
+                      <Lock className="w-4 h-4 text-amber-600" />
+                      <span className="text-xs font-semibold text-amber-800">Permissions and access controls</span>
+                    </div>
+                  </div>
+                  
+                  {/* Downward arrow to systems row */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full flex flex-col items-center" aria-hidden="true">
+                    <div className="w-px h-4 bg-amber-400/60" />
+                    <svg width="12" height="8" viewBox="0 0 12 8" className="text-amber-400/60">
+                      <path d="M1 1 L6 6 L11 1" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
                 </div>
 
                 {/* 100+ Business Systems */}
