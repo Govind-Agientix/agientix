@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import agientixLogo from "@/assets/agientix-logo.png";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -121,9 +120,19 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container-wide flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={agientixLogo} alt="Agientix" className="h-12 w-12 object-contain" />
-          <span className="font-display font-bold text-xl">Agientix</span>
+        <Link to="/" className="flex items-center">
+          {/* Mobile: icon-only mark */}
+          <img 
+            src="/brand/agentix-mark.jpg" 
+            alt="Agientix" 
+            className="h-8 w-auto object-contain lg:hidden" 
+          />
+          {/* Desktop: full lockup with wordmark */}
+          <img 
+            src="/brand/agentix-lockup.png" 
+            alt="Agientix" 
+            className="hidden lg:block h-8 w-auto object-contain" 
+          />
         </Link>
 
         {/* Desktop Navigation */}
