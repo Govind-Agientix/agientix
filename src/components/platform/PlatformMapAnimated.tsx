@@ -129,8 +129,9 @@ function BrandLogoTile({ icon: Icon, name }: BrandLogoTileProps) {
       <Tooltip>
         <TooltipTrigger asChild>
           <div 
-            className="w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-sm hover:border-primary/30"
+            className="w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-sm hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-default"
             aria-label={name}
+            tabIndex={0}
           >
             <Icon size={18} color="default" />
           </div>
@@ -857,7 +858,7 @@ export function PlatformMapAnimated() {
                     </p>
                     <Link 
                       to="/demo" 
-                      className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1"
+                      className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
                     >
                       View all integrations
                       <ArrowRight className="w-3 h-3" />
