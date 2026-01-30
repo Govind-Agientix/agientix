@@ -125,13 +125,13 @@ export function Header() {
           <img 
             src="/brand/agentix-mark.jpg" 
             alt="Agientix" 
-            className="h-10 w-auto object-contain lg:hidden" 
+            className="h-12 w-auto object-contain lg:hidden" 
           />
           {/* Desktop: full lockup with wordmark */}
           <img 
             src="/brand/agentix-lockup.png" 
             alt="Agientix" 
-            className="hidden lg:block h-12 w-auto object-contain" 
+            className="hidden lg:block w-36 h-auto object-contain" 
           />
         </Link>
 
