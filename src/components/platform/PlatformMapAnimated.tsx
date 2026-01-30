@@ -84,6 +84,9 @@ import {
   SiGooglecloud,
   SiBox,
   SiAtlassian,
+  SiDiscord,
+  SiGooglechat,
+  SiWebex,
 } from "@icons-pack/react-simple-icons";
 
 // Integration logos for the systems row
@@ -534,11 +537,13 @@ export function PlatformMapAnimated() {
                     <p className="text-[10px] text-muted-foreground mb-2">100+ languages</p>
                     <div className="flex flex-wrap gap-1">
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Web app</span>
-                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-1">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary inline-flex items-center gap-0.5">
                         Chat apps
-                        <SiSlack size={12} color="default" />
-                        <SiGooglemeet size={12} color="default" />
-                        <SiZoom size={12} color="default" />
+                        <SiSlack size={11} color="default" className="opacity-90" />
+                        <SiZoom size={11} color="default" className="opacity-90" />
+                        <SiGooglemeet size={11} color="default" className="opacity-90" />
+                        <SiGooglechat size={11} color="default" className="opacity-90" />
+                        <SiWebex size={11} color="default" className="opacity-90" />
                       </span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Service portals</span>
                       <span className="px-1.5 py-0.5 text-[9px] font-medium rounded bg-primary/10 text-primary">Intranets</span>
