@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Youtube } from "lucide-react";
-import agientixLogo from "@/assets/agientix-logo.png";
 
 const footerLinks = {
   product: {
@@ -59,9 +58,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src={agientixLogo} alt="Agientix" className="h-12 w-12 object-contain" />
-              <span className="font-display font-bold text-xl">Agientix</span>
+            <Link to="/" className="flex items-center mb-4">
+              <img src="/brand/agentix-lockup.png" alt="Agientix" className="w-40 h-auto object-contain" />
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
               Agentic AI that delivers results. We build and deploy AI agents that handle real work across your tools.
