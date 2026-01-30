@@ -506,23 +506,23 @@ export function PlatformMapAnimated() {
             </svg>
 
             {/* Diagram Container - 3-column grid with proper spacing */}
-            <div className="grid grid-cols-[180px_1fr_300px] gap-5 relative z-[2] items-start">
-            {/* Left Labels Column */}
-            <div className="flex flex-col gap-2 pt-1">
-              <div className="h-[120px] flex items-center">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
-                  Built-in apps
-                </span>
+            <div className="grid grid-cols-[120px_1fr_280px] gap-4 relative z-[2] items-start">
+              {/* Left Labels Column */}
+              <div className="flex flex-col pt-3">
+                <div className="h-[180px] flex items-start">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                    Built-in apps
+                  </span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                    Core architecture
+                  </span>
+                </div>
               </div>
-              <div className="flex-1 flex items-start pt-4">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
-                  Core architecture
-                </span>
-              </div>
-            </div>
 
-            {/* A) Outer Diagram Frame - reduced padding */}
-            <div className="flex-1 rounded-xl border-2 border-border bg-background p-3 lg:p-4">
+              {/* Center Column - Main Diagram Frame */}
+              <div className="rounded-xl border-2 border-border bg-background p-4">
               
               {/* C) Built-in Apps Area */}
               <div className={`mb-6 p-3 -m-3 rounded-xl ${getSpotlightClass("apps")} relative`}>
@@ -969,9 +969,10 @@ export function PlatformMapAnimated() {
                 </div>
               </div>
             </div>
+            </div>
 
-              {/* G) Bottom Bars - inside 1280px canvas, span full width below grid */}
-              <div className="mt-6 space-y-3">
+            {/* G) Bottom Bars - below grid, span full 1280px width */}
+            <div className="mt-5 space-y-3">
                 {/* Governance bar */}
                 <div className={`flex items-center gap-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 ${hoverBox} ${getSpotlightClass("governance")}`}>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700 shrink-0">
@@ -1018,7 +1019,6 @@ export function PlatformMapAnimated() {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
