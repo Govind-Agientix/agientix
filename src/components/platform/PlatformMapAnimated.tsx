@@ -851,9 +851,18 @@ export function PlatformMapAnimated() {
 
                 {/* 100+ Business Systems */}
                 <div className={`p-3 rounded-lg bg-muted/50 border mt-4 ${hoverBox} ${getSpotlightClass("systems")}`}>
-                  <p className="text-xs font-semibold text-center text-muted-foreground mb-3">
-                    100+ business and content systems
-                  </p>
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-xs font-semibold text-muted-foreground">
+                      100+ business and content systems
+                    </p>
+                    <Link 
+                      to="/demo" 
+                      className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1"
+                    >
+                      View all integrations
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
                   <div className="flex items-center justify-center gap-2 flex-wrap">
                     {/* Brand logo tiles */}
                     {INTEGRATION_LOGOS.map((logo) => (
@@ -870,8 +879,8 @@ export function PlatformMapAnimated() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-[9px] text-muted-foreground/60 text-center mt-2">
-                    Logos are trademarks of their respective owners.
+                  <p className="text-[8px] text-muted-foreground/50 text-center mt-2">
+                    Integration examples. Logos are trademarks of their respective owners.
                   </p>
                 </div>
               </div>
