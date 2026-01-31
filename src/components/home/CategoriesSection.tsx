@@ -1,6 +1,27 @@
 import { useState } from "react";
 import { Bot, Workflow, Plug, FileText, BarChart3, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  SiSlack,
+  SiSalesforce,
+  SiGoogle,
+  SiJira,
+  SiNotion,
+  SiZendesk,
+  SiConfluence,
+  SiHubspot,
+} from "@icons-pack/react-simple-icons";
+
+const logoCloudIcons = [
+  { Icon: SiSlack, name: "Slack" },
+  { Icon: SiSalesforce, name: "Salesforce" },
+  { Icon: SiGoogle, name: "Google" },
+  { Icon: SiJira, name: "Jira" },
+  { Icon: SiNotion, name: "Notion" },
+  { Icon: SiZendesk, name: "Zendesk" },
+  { Icon: SiConfluence, name: "Confluence" },
+  { Icon: SiHubspot, name: "HubSpot" },
+];
 
 const categories = [
   {
@@ -177,12 +198,13 @@ export function CategoriesSection() {
             <div className="mt-8 pt-8 border-t">
               <div className="flex items-center gap-3 overflow-hidden">
                 <div className="flex gap-6 animate-logo-scroll">
-                  {[...Array(8)].map((_, i) => (
+                  {logoCloudIcons.map((item, i) => (
                     <div
                       key={i}
+                      title={item.name}
                       className="w-12 h-12 rounded-lg bg-secondary/50 flex items-center justify-center shrink-0"
                     >
-                      <div className="w-6 h-6 rounded bg-muted-foreground/20" />
+                      <item.Icon size={20} color="default" title={item.name} />
                     </div>
                   ))}
                 </div>
