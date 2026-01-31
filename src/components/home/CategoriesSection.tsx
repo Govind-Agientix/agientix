@@ -209,6 +209,9 @@ export function CategoriesSection() {
                   ))}
                 </div>
               </div>
+              <p className="text-xs text-muted-foreground mt-3">
+                Logos are trademarks of their respective owners.
+              </p>
             </div>
           </div>
         </div>
