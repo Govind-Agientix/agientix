@@ -1,27 +1,49 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import {
+  SiAdp,
+  SiSalesforce,
+  SiHubspot,
+  SiSlack,
+  SiGoogle,
+  SiJira,
+  SiZendesk,
+  SiSap,
+  SiNotion,
+  SiConfluence,
+  SiAsana,
+  SiIntuit,
+  type IconType,
+} from "@icons-pack/react-simple-icons";
 
 const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration"];
 
-const integrations = [
-  { name: "Workday", category: "HR", available: true },
-  { name: "ADP", category: "HR", available: true },
-  { name: "BambooHR", category: "HR", available: true },
-  { name: "Salesforce", category: "Sales", available: true },
-  { name: "HubSpot", category: "Sales", available: true },
-  { name: "Microsoft Teams", category: "Collaboration", available: true },
-  { name: "Slack", category: "Collaboration", available: true },
-  { name: "Google Workspace", category: "Collaboration", available: true },
-  { name: "ServiceNow", category: "IT", available: true },
-  { name: "Jira", category: "IT", available: true },
-  { name: "Zendesk", category: "IT", available: true },
-  { name: "SAP", category: "Finance", available: true },
-  { name: "NetSuite", category: "Finance", available: true },
-  { name: "QuickBooks", category: "Finance", available: true },
-  { name: "Notion", category: "Collaboration", available: true },
-  { name: "Confluence", category: "Collaboration", available: true },
-  { name: "Asana", category: "Collaboration", available: false },
-  { name: "Monday.com", category: "Collaboration", available: false },
+interface Integration {
+  name: string;
+  category: string;
+  available: boolean;
+  Icon?: IconType;
+}
+
+const integrations: Integration[] = [
+  { name: "Workday", category: "HR", available: true }, // TODO: No icon available
+  { name: "ADP", category: "HR", available: true, Icon: SiAdp },
+  { name: "BambooHR", category: "HR", available: true }, // TODO: No icon available
+  { name: "Salesforce", category: "Sales", available: true, Icon: SiSalesforce },
+  { name: "HubSpot", category: "Sales", available: true, Icon: SiHubspot },
+  { name: "Microsoft Teams", category: "Collaboration", available: true }, // TODO: No icon available
+  { name: "Slack", category: "Collaboration", available: true, Icon: SiSlack },
+  { name: "Google Workspace", category: "Collaboration", available: true, Icon: SiGoogle },
+  { name: "ServiceNow", category: "IT", available: true }, // TODO: No icon available
+  { name: "Jira", category: "IT", available: true, Icon: SiJira },
+  { name: "Zendesk", category: "IT", available: true, Icon: SiZendesk },
+  { name: "SAP", category: "Finance", available: true, Icon: SiSap },
+  { name: "NetSuite", category: "Finance", available: true }, // TODO: No icon available
+  { name: "QuickBooks", category: "Finance", available: true, Icon: SiIntuit },
+  { name: "Notion", category: "Collaboration", available: true, Icon: SiNotion },
+  { name: "Confluence", category: "Collaboration", available: true, Icon: SiConfluence },
+  { name: "Asana", category: "Collaboration", available: false, Icon: SiAsana },
+  { name: "Monday.com", category: "Collaboration", available: false }, // TODO: No icon available
 ];
 
 export function IntegrationsSection() {
@@ -66,17 +88,22 @@ export function IntegrationsSection() {
           {filtered.map((integration) => (
             <div
               key={integration.name}
+              title={integration.name}
               className={cn(
                 "relative aspect-square rounded-xl border bg-card flex flex-col items-center justify-center p-4 transition-all hover:shadow-lg hover:-translate-y-1",
                 !integration.available && "opacity-60"
               )}
             >
-              <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-2">
-                <span className="text-lg font-bold text-muted-foreground">
-                  {integration.name.charAt(0)}
-                </span>
-              </div>
-              <span className="text-xs text-center font-medium line-clamp-1">
+              {integration.Icon ? (
+                <integration.Icon size={20} color="default" title={integration.name} />
+              ) : (
+                <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                  <span className="text-lg font-bold text-muted-foreground">
+                    {integration.name.charAt(0)}
+                  </span>
+                </div>
+              )}
+              <span className="text-xs text-center font-medium line-clamp-1 mt-2">
                 {integration.name}
               </span>
               {!integration.available && (
