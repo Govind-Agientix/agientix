@@ -15,6 +15,17 @@ import {
   SiIntuit,
   type IconType,
 } from "@icons-pack/react-simple-icons";
+import { 
+  Truck, 
+  MapPin, 
+  Ship, 
+  Container, 
+  Anchor, 
+  Radio, 
+  Gauge, 
+  Navigation,
+  type LucideIcon 
+} from "lucide-react";
 
 const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration", "Logistics"];
 
@@ -23,6 +34,7 @@ interface Integration {
   category: string;
   status: "available" | "soon" | "by-request";
   Icon?: IconType;
+  LucideIcon?: LucideIcon;
 }
 
 const integrations: Integration[] = [
@@ -45,14 +57,14 @@ const integrations: Integration[] = [
   { name: "Asana", category: "Collaboration", status: "soon", Icon: SiAsana },
   { name: "Monday.com", category: "Collaboration", status: "soon" },
   // Logistics
-  { name: "project44", category: "Logistics", status: "by-request" },
-  { name: "FourKites", category: "Logistics", status: "by-request" },
-  { name: "Shippeo", category: "Logistics", status: "by-request" },
-  { name: "CargoWise", category: "Logistics", status: "by-request" },
-  { name: "PortPro", category: "Logistics", status: "by-request" },
-  { name: "Samsara", category: "Logistics", status: "by-request" },
-  { name: "Geotab", category: "Logistics", status: "by-request" },
-  { name: "Trimble", category: "Logistics", status: "by-request" },
+  { name: "project44", category: "Logistics", status: "by-request", LucideIcon: Truck },
+  { name: "FourKites", category: "Logistics", status: "by-request", LucideIcon: MapPin },
+  { name: "Shippeo", category: "Logistics", status: "by-request", LucideIcon: Ship },
+  { name: "CargoWise", category: "Logistics", status: "by-request", LucideIcon: Container },
+  { name: "PortPro", category: "Logistics", status: "by-request", LucideIcon: Anchor },
+  { name: "Samsara", category: "Logistics", status: "by-request", LucideIcon: Radio },
+  { name: "Geotab", category: "Logistics", status: "by-request", LucideIcon: Gauge },
+  { name: "Trimble", category: "Logistics", status: "by-request", LucideIcon: Navigation },
 ];
 
 export function IntegrationsSection() {
@@ -105,6 +117,8 @@ export function IntegrationsSection() {
             >
               {integration.Icon ? (
                 <integration.Icon size={20} color="default" title={integration.name} />
+              ) : integration.LucideIcon ? (
+                <integration.LucideIcon size={24} className="text-muted-foreground" />
               ) : (
                 <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
                   <span className="text-lg font-bold text-muted-foreground">
@@ -128,10 +142,6 @@ export function IntegrationsSection() {
             </div>
           ))}
         </div>
-
-        <p className="text-xs text-muted-foreground text-center mt-8">
-          Logos are trademarks of their respective owners. Integration availability varies by plan and scope.
-        </p>
       </div>
     </section>
   );
