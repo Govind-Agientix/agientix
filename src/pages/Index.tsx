@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { PlatformMapAnimated } from "@/components/platform/PlatformMapAnimated";
+import { TrainingSection } from "@/components/home/TrainingSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { TimelineSection } from "@/components/home/TimelineSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
@@ -20,6 +21,7 @@ const Index = () => {
       <main className="flex-1">
         <HeroSection />
         <PlatformMapAnimated />
+        <TrainingSection />
         <CategoriesSection />
         <TimelineSection />
         <TestimonialsSection />
