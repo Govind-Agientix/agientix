@@ -21,29 +21,38 @@ const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration", "Log
 interface Integration {
   name: string;
   category: string;
-  available: boolean;
+  status: "available" | "soon" | "by-request";
   Icon?: IconType;
 }
 
 const integrations: Integration[] = [
-  { name: "Workday", category: "HR", available: true }, // TODO: No icon available
-  { name: "ADP", category: "HR", available: true, Icon: SiAdp },
-  { name: "BambooHR", category: "HR", available: true }, // TODO: No icon available
-  { name: "Salesforce", category: "Sales", available: true, Icon: SiSalesforce },
-  { name: "HubSpot", category: "Sales", available: true, Icon: SiHubspot },
-  { name: "Microsoft Teams", category: "Collaboration", available: true }, // TODO: No icon available
-  { name: "Slack", category: "Collaboration", available: true, Icon: SiSlack },
-  { name: "Google Workspace", category: "Collaboration", available: true, Icon: SiGoogle },
-  { name: "ServiceNow", category: "IT", available: true }, // TODO: No icon available
-  { name: "Jira", category: "IT", available: true, Icon: SiJira },
-  { name: "Zendesk", category: "IT", available: true, Icon: SiZendesk },
-  { name: "SAP", category: "Finance", available: true, Icon: SiSap },
-  { name: "NetSuite", category: "Finance", available: true }, // TODO: No icon available
-  { name: "QuickBooks", category: "Finance", available: true, Icon: SiIntuit },
-  { name: "Notion", category: "Collaboration", available: true, Icon: SiNotion },
-  { name: "Confluence", category: "Collaboration", available: true, Icon: SiConfluence },
-  { name: "Asana", category: "Collaboration", available: false, Icon: SiAsana },
-  { name: "Monday.com", category: "Collaboration", available: false }, // TODO: No icon available
+  { name: "Workday", category: "HR", status: "available" },
+  { name: "ADP", category: "HR", status: "available", Icon: SiAdp },
+  { name: "BambooHR", category: "HR", status: "available" },
+  { name: "Salesforce", category: "Sales", status: "available", Icon: SiSalesforce },
+  { name: "HubSpot", category: "Sales", status: "available", Icon: SiHubspot },
+  { name: "Microsoft Teams", category: "Collaboration", status: "available" },
+  { name: "Slack", category: "Collaboration", status: "available", Icon: SiSlack },
+  { name: "Google Workspace", category: "Collaboration", status: "available", Icon: SiGoogle },
+  { name: "ServiceNow", category: "IT", status: "available" },
+  { name: "Jira", category: "IT", status: "available", Icon: SiJira },
+  { name: "Zendesk", category: "IT", status: "available", Icon: SiZendesk },
+  { name: "SAP", category: "Finance", status: "available", Icon: SiSap },
+  { name: "NetSuite", category: "Finance", status: "available" },
+  { name: "QuickBooks", category: "Finance", status: "available", Icon: SiIntuit },
+  { name: "Notion", category: "Collaboration", status: "available", Icon: SiNotion },
+  { name: "Confluence", category: "Collaboration", status: "available", Icon: SiConfluence },
+  { name: "Asana", category: "Collaboration", status: "soon", Icon: SiAsana },
+  { name: "Monday.com", category: "Collaboration", status: "soon" },
+  // Logistics
+  { name: "project44", category: "Logistics", status: "by-request" },
+  { name: "FourKites", category: "Logistics", status: "by-request" },
+  { name: "Shippeo", category: "Logistics", status: "by-request" },
+  { name: "CargoWise", category: "Logistics", status: "by-request" },
+  { name: "PortPro", category: "Logistics", status: "by-request" },
+  { name: "Samsara", category: "Logistics", status: "by-request" },
+  { name: "Geotab", category: "Logistics", status: "by-request" },
+  { name: "Trimble", category: "Logistics", status: "by-request" },
 ];
 
 export function IntegrationsSection() {
@@ -91,7 +100,7 @@ export function IntegrationsSection() {
               title={integration.name}
               className={cn(
                 "relative aspect-square rounded-xl border bg-card flex flex-col items-center justify-center p-4 transition-all hover:shadow-lg hover:-translate-y-1",
-                !integration.available && "opacity-60"
+                integration.status !== "available" && "opacity-60"
               )}
             >
               {integration.Icon ? (
@@ -106,9 +115,14 @@ export function IntegrationsSection() {
               <span className="text-xs text-center font-medium line-clamp-1 mt-2">
                 {integration.name}
               </span>
-              {!integration.available && (
+              {integration.status === "soon" && (
                 <span className="absolute top-2 right-2 text-[10px] bg-accent/20 text-accent px-1.5 py-0.5 rounded">
                   Soon
+                </span>
+              )}
+              {integration.status === "by-request" && (
+                <span className="absolute top-2 right-2 text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded">
+                  By request
                 </span>
               )}
             </div>
