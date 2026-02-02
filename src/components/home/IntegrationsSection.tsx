@@ -116,12 +116,12 @@ export function IntegrationsSection() {
                 {integration.name}
               </span>
               {integration.status === "soon" && (
-                <span className="absolute top-2 right-2 text-[10px] bg-accent/20 text-accent px-1.5 py-0.5 rounded">
+                <span className="absolute top-2 right-2 text-[10px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded font-medium">
                   Soon
                 </span>
               )}
               {integration.status === "by-request" && (
-                <span className="absolute top-2 right-2 text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded">
+                <span className="absolute top-2 right-2 text-[10px] bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 px-1.5 py-0.5 rounded font-medium">
                   By request
                 </span>
               )}
