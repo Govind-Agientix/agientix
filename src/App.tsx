@@ -16,6 +16,7 @@ import Trust from "./pages/Trust";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 import Legal from "./pages/Legal";
+import Training from "./pages/Training";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/company/partners" element={<Partners />} />
           <Route path="/company/values" element={<Values />} />
           <Route path="/trust" element={<Trust />} />
+          <Route path="/training" element={<Training />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/legal/:type" element={<Legal />} />
