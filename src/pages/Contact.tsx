@@ -35,7 +35,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-muted-foreground">contact@agientix.ai</p>
+                    <p className="text-muted-foreground">Innovate@Agientix.ai</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -44,7 +44,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">407-307-0855</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -53,7 +53,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Office</h3>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <p className="text-muted-foreground">Orlando, FL</p>
                   </div>
                 </div>
               </div>
