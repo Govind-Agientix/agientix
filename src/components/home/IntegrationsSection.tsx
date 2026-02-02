@@ -16,7 +16,7 @@ import {
   type IconType,
 } from "@icons-pack/react-simple-icons";
 
-const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration"];
+const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration", "Logistics"];
 
 interface Integration {
   name: string;
