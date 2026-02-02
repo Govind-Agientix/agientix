@@ -15,16 +15,15 @@ import {
   SiIntuit,
   type IconType,
 } from "@icons-pack/react-simple-icons";
-import { 
-  Truck, 
-  MapPin, 
-  Ship, 
-  Container, 
-  Radio, 
-  Gauge, 
-  Navigation,
-  type LucideIcon 
-} from "lucide-react";
+
+// Logistics company logos
+import project44Logo from "@/assets/logos/project44.png";
+import fourkitesLogo from "@/assets/logos/fourkites.png";
+import shippeoLogo from "@/assets/logos/shippeo.png";
+import cargowiseLogo from "@/assets/logos/cargowise.png";
+import samsaraLogo from "@/assets/logos/samsara.png";
+import geotabLogo from "@/assets/logos/geotab.png";
+import trimbleLogo from "@/assets/logos/trimble.png";
 
 const categories = ["All", "HR", "Finance", "IT", "Sales", "Collaboration", "Logistics"];
 
@@ -33,7 +32,7 @@ interface Integration {
   category: string;
   status: "available" | "soon" | "by-request";
   Icon?: IconType;
-  LucideIcon?: LucideIcon;
+  logo?: string;
 }
 
 const integrations: Integration[] = [
@@ -56,13 +55,13 @@ const integrations: Integration[] = [
   { name: "Asana", category: "Collaboration", status: "soon", Icon: SiAsana },
   { name: "Monday.com", category: "Collaboration", status: "soon" },
   // Logistics
-  { name: "project44", category: "Logistics", status: "by-request", LucideIcon: Truck },
-  { name: "FourKites", category: "Logistics", status: "by-request", LucideIcon: MapPin },
-  { name: "Shippeo", category: "Logistics", status: "by-request", LucideIcon: Ship },
-  { name: "CargoWise", category: "Logistics", status: "by-request", LucideIcon: Container },
-  { name: "Samsara", category: "Logistics", status: "by-request", LucideIcon: Radio },
-  { name: "Geotab", category: "Logistics", status: "by-request", LucideIcon: Gauge },
-  { name: "Trimble", category: "Logistics", status: "by-request", LucideIcon: Navigation },
+  { name: "project44", category: "Logistics", status: "by-request", logo: project44Logo },
+  { name: "FourKites", category: "Logistics", status: "by-request", logo: fourkitesLogo },
+  { name: "Shippeo", category: "Logistics", status: "by-request", logo: shippeoLogo },
+  { name: "CargoWise", category: "Logistics", status: "by-request", logo: cargowiseLogo },
+  { name: "Samsara", category: "Logistics", status: "by-request", logo: samsaraLogo },
+  { name: "Geotab", category: "Logistics", status: "by-request", logo: geotabLogo },
+  { name: "Trimble", category: "Logistics", status: "by-request", logo: trimbleLogo },
 ];
 
 export function IntegrationsSection() {
@@ -115,8 +114,8 @@ export function IntegrationsSection() {
             >
               {integration.Icon ? (
                 <integration.Icon size={20} color="default" title={integration.name} />
-              ) : integration.LucideIcon ? (
-                <integration.LucideIcon size={24} className="text-muted-foreground" />
+              ) : integration.logo ? (
+                <img src={integration.logo} alt={integration.name} className="w-8 h-8 object-contain" />
               ) : (
                 <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
                   <span className="text-lg font-bold text-muted-foreground">
