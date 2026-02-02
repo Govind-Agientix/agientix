@@ -128,6 +128,10 @@ export function IntegrationsSection() {
             </div>
           ))}
         </div>
+
+        <p className="text-xs text-muted-foreground text-center mt-8">
+          Logos are trademarks of their respective owners. Integration availability varies by plan and scope.
+        </p>
       </div>
     </section>
   );
